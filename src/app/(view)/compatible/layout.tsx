@@ -7,9 +7,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full bg-black">
+    <div className="w-full  bg-black ">
       <div className="mb-[48px]">{children}</div>
-      <Nav color=" to-pure "></Nav>
+      <Nav
+        color=" from-black to-[rgba(169,78,78)] "
+        textColor=" text-white "
+      ></Nav>
     </div>
   );
 }

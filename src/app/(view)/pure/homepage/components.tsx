@@ -20,7 +20,10 @@ import CrownOutline from "@/assets/icons/crown-outline.svg";
 import Favorites from "@/assets/icons/favorites.svg";
 import FavoritesOutline from "@/assets/icons/favorites-outline.svg";
 import Forward from "@/assets/icons/forward.svg";
+import test3 from "@/assets/Image/test3.jpeg";
+import test4 from "@/assets/Image/test4.jpg";
 import dayjs, { Dayjs } from "dayjs";
+import { piece, collection } from "@/app/interface";
 import { useRouter } from "next/navigation";
 import { resolve } from "path";
 
@@ -46,7 +49,6 @@ export const Info = () => {
 
       // window.scrollTo({ top: 10, left: 0, behavior: "smooth" });
     } else {
-      console.log(height);
       if (!curHeight.current) {
         setHeight(true);
         curHeight.current = true;
@@ -72,27 +74,6 @@ export const Info = () => {
       indicator.style.left = `${item.offsetLeft}px`;
       indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
     }
-    // document.getElementsByName("tabbar").forEach((item, index) => {
-    //   const indicator = document.getElementById("indicator");
-    //   const rect = item.getBoundingClientRect();
-    //   if (index === 0 && indicator) {
-    //     indicator.style.width = `${rect.width}px`;
-    //     indicator.style.height = `${rect.height}px`;
-    //     indicator.style.left = `${item.offsetLeft}px`;
-    //     indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
-    //     item.style.background = "transparent";
-    //   }
-    //   item.addEventListener("click", () => {
-    //     const indicator = document.getElementById("indicator");
-    //     const rect = item.getBoundingClientRect();
-    //     if (indicator) {
-    //       indicator.style.width = `${rect.width}px`;
-    //       indicator.style.height = `${rect.height}px`;
-    //       indicator.style.left = `${item.offsetLeft}px`;
-    //       indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
-    //     }
-    //   });
-    // });
   }, [selected]);
 
   return (
@@ -210,7 +191,7 @@ export const Info = () => {
         </div>
       </div>
       {refresh && (
-        <div className=" text-black w-full pt-16 flex justify-center">
+        <div className=" text-black w-full pt-4 flex justify-center">
           <SpinLoading
             color="white"
             style={{ "--size": "64px", margin: "auto", "--color": "black" }}
@@ -229,8 +210,12 @@ export const Info = () => {
           <Swiper.Item className=" w-full ">
             <Pieces />
           </Swiper.Item>
-          <Swiper.Item className="h-4">222</Swiper.Item>
-          <Swiper.Item className="h-4">333</Swiper.Item>
+          <Swiper.Item className=" w-full ">
+            <Series />
+          </Swiper.Item>
+          <Swiper.Item className=" w-full ">
+            <Pieces />
+          </Swiper.Item>
         </Swiper>
       </div>
     </div>
@@ -255,23 +240,23 @@ const Pieces = () => {
   const [hasMore, setHasMore] = useState(true);
   const PiecesList = [
     {
-      image: avatar,
-      introduction: "不要再打游戏了好吗？好的。但打游戏是一种人生态度……",
+      cover: avatar,
+      description: "不要再打游戏了好吗？好的。但打游戏是一种人生态度……",
       time: dayjs("2024-04-13 21:29:10"),
     },
     {
-      image: test,
-      introduction: "我爱吃饭，饭真好吃，真想一辈子吃饭。",
+      cover: test,
+      description: "我爱吃饭，饭真好吃，真想一辈子吃饭。",
       time: dayjs("2024-04-13 19:55:24"),
     },
     {
-      image: avatar,
-      introduction: "从前有座山，山里有座庙，庙里有个老和尚给小和尚讲故事",
+      cover: avatar,
+      description: "从前有座山，山里有座庙，庙里有个老和尚给小和尚讲故事",
       time: dayjs("2024-02-18 00:03:35"),
     },
     {
-      image: avatar,
-      introduction:
+      cover: avatar,
+      description:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem in consequuntur similique dignissimos quaerat earum explicabo temporibus vitae nobis culpa enim, eaque ab voluptate quis aspernatur quod alias architecto? Incidunt!",
       time: dayjs("2024-01-17 12:26:11"),
     },
@@ -279,12 +264,7 @@ const Pieces = () => {
   return (
     <div className="w-full flex flex-col justify-between items-center gap-y-6">
       {PiecesList.map((item, index) => (
-        <PieceItem
-          image={item.image}
-          introduction={item.introduction}
-          time={item.time}
-          key={`pieces${index}`}
-        />
+        <PieceItem item={item} key={`pieces${index}`} />
       ))}
       <InfiniteScroll
         hasMore={hasMore}
@@ -304,20 +284,12 @@ const Pieces = () => {
     </div>
   );
 };
-const PieceItem = ({
-  image,
-  introduction,
-  time,
-}: {
-  image: StaticImageData;
-  introduction: string;
-  time: dayjs.Dayjs;
-}) => {
+const PieceItem = ({ item }: { item: piece }) => {
   return (
     <div className="bg-neutral-200 w-full rounded-2xl px-8  py-3 flex flex-col items-center">
       {/* <div className="w-[90%]"> */}
       <Image
-        src={image}
+        src={item.cover}
         alt="image"
         style={{
           objectFit: "cover",
@@ -329,23 +301,23 @@ const PieceItem = ({
       <div className="grid grid-cols-[105px_1fr] gap-x-4 justify-flex-start w-full ">
         <div className="row-span-1  w-[105px] h-[85px] relative ">
           <div className="text-[26px] font-bold text-neutral-600 absolute left-0 top-0 z-[1]">
-            {time.year()}
+            {item.time.year()}
           </div>
           <div className="w-[85px] h-[65px] bg-neutral-300 rounded-2xl absolute right-0 bottom-0">
             <div className="flex flex-col text-[20px] font-bold text-neutral-600 items-end px-1 justify-center h-full ">
               <div>
-                <div className="">{`${time.format("MM")}/${time.format(
-                  "DD"
-                )}`}</div>
-                <div style={{ marginTop: "-10px" }}>{`${time.format(
+                <div className="">{`${item.time.format(
+                  "MM"
+                )}/${item.time.format("DD")}`}</div>
+                <div style={{ marginTop: "-10px" }}>{`${item.time.format(
                   "HH"
-                )}:${time.format("ss")}`}</div>
+                )}:${item.time.format("ss")}`}</div>
               </div>
             </div>
           </div>
         </div>
         <div className="row-span-1 py-4 grid grid-rows-[1fr_10px] gap-y-4">
-          {introduction}
+          {item.description}
           <div className="flex flex-row gap-x-4 justify-around w-full">
             <InteractIcon
               normal={<Pawn className="w-6 h-6" />}
@@ -386,6 +358,79 @@ const InteractIcon = ({
   );
 };
 //系列合集
-const Series = () => {};
+const Series = () => {
+  const series = [
+    {
+      cover: test3,
+      title: "外币巴伯",
+      type: "pure",
+      tag: "外壁吧薄",
+      tags: ["歪比巴伯", "崴笔吧泊"],
+      description:
+        "Voluptatum esse assumenda architecto quaerat optio perferendis dolore temporibus minima voluptate? Doloribus corrupti saepe repellat deleniti ullam assumenda voluptatibus delectus debitis ad!",
+    },
+    {
+      cover: test4,
+      title: "外币巴伯",
+      type: "compatible",
+      tag: "外壁吧薄",
+      tags: ["歪比巴伯", "崴笔吧泊"],
+      description:
+        "Minima ad molestias libero, amet facere quasi? Vel earum quas, facere reprehenderit inventore nesciunt maiores quod dolorum architecto praesentium, quidem laudantium suscipit.",
+    },
+  ];
+  return (
+    <div className="flex flex-col gap-y-6 px-4">
+      {series.map((item, index) => (
+        <SeriesItem item={item} key={`collection${index}`}></SeriesItem>
+      ))}
+    </div>
+  );
+};
+const SeriesItem = ({ item }: { item: collection }) => {
+  return (
+    <div className="w-full bg-neutral-200 rounded-2xl ">
+      <div className="cursor-pointer grid grid-cols-[110px_1fr] gap-x-4 m-4 p-2 rounded-md items-center">
+        <div className="overflow-hidden relative w-[110px] h-[110px]  ">
+          <Image
+            style={{ objectFit: "cover" }}
+            src={item.cover}
+            // width={97}
+            // height={97}
+            fill={true}
+            sizes="100vw"
+            alt=""
+          />
+        </div>
+        <div className="flex flex-col max-h-[110px] gap-y-2">
+          <div className="text-[15px] font-title drop-shadow-lg text-[20px]">
+            {item.title}
+          </div>
+          <div className="flex flex-row gap-x-4 items-center">
+            <button className="outline outline-1 rounded-full px-3 outline-black shadow-lg">
+              {item.tag}
+            </button>
+            <div
+              className={`w-4 h-4 rounded-full ${
+                item.type === "pure" ? " bg-pure " : " bg-compatible "
+              }`}
+            ></div>
+          </div>
+          <div className=" flex flex-row text-black gap-x-2 text-[12px]">
+            {item.tags.map((_, i) => (
+              <button
+                className="rounded-full px-3 shadow-lg outline outline-black outline-1"
+                key={`tags${_}${i}`}
+              >
+                {_}
+              </button>
+            ))}
+          </div>
+          <p className="line-clamp-4 text-gray-front">{item.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 //赞助点图
 const Sponsor = () => {};

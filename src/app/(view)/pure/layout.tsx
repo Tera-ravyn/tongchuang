@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <div className="w-full ">
       <div className="mb-[48px]">{children}</div>
-      <Nav color=" to-pure "></Nav>
+      <Nav color=" from-white  to-pure " textColor=" text-black "></Nav>
     </div>
   );
 }
