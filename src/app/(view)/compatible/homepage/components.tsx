@@ -25,17 +25,19 @@ import { useRouter } from "next/navigation";
 import { resolve } from "path";
 
 export const Info = () => {
-  const [refresh, setRefresh] = useState(false);
   const swiperRef = useRef<SwiperRef>(null);
   const [height, setHeight] = useState(true);
   const [selected, setSelected] = useState(0);
+  const [refresh, setRefresh] = useState(false);
   const curHeight = useRef(true);
+
   const handleRefresh = () => {
     setRefresh(true);
     setTimeout(() => {
       setRefresh(false);
     }, 5000);
   };
+
   const handleScroll = () => {
     const scrollTop = document.body.scrollTop;
     const threshold = 3; // 可以根据需要调整
@@ -72,27 +74,6 @@ export const Info = () => {
       indicator.style.left = `${item.offsetLeft}px`;
       indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
     }
-    // document.getElementsByName("tabbar").forEach((item, index) => {
-    //   const indicator = document.getElementById("indicator");
-    //   const rect = item.getBoundingClientRect();
-    //   if (index === 0 && indicator) {
-    //     indicator.style.width = `${rect.width}px`;
-    //     indicator.style.height = `${rect.height}px`;
-    //     indicator.style.left = `${item.offsetLeft}px`;
-    //     indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
-    //     item.style.background = "transparent";
-    //   }
-    //   item.addEventListener("click", () => {
-    //     const indicator = document.getElementById("indicator");
-    //     const rect = item.getBoundingClientRect();
-    //     if (indicator) {
-    //       indicator.style.width = `${rect.width}px`;
-    //       indicator.style.height = `${rect.height}px`;
-    //       indicator.style.left = `${item.offsetLeft}px`;
-    //       indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
-    //     }
-    //   });
-    // });
   }, [selected]);
 
   return (
@@ -102,11 +83,12 @@ export const Info = () => {
           onClick={() => {
             setHeight(true);
           }}
-          className={`m-auto flex flex-col items-center justify-evenly w-full bg-black rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
+          className={`m-auto flex flex-col items-center justify-evenly w-full bg-neutral-200 rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
             height ? "h-[212px]" : "h-[83px]"
           }`}
         >
-          <div className="w-full px-4 flex justify-between items-center text-white ">
+          <div className="w-full h-full bg-[#390F0F] absolute z-[-1]"></div>
+          <div className="w-full px-4 flex justify-between items-center text-black ">
             <div className="flex justify-start items-center gap-x-3 w-full">
               <Image
                 width={height ? 80 : 40}
@@ -118,36 +100,33 @@ export const Info = () => {
               <div className="  m-auto w-full  ">
                 <div className="font-title  p-2 text-[20px] flex flex-row items-center w-full justify-between">
                   <div
-                    className={`flex gap-2 items-center ${
-                      height ? "text-white" : "text-gray"
+                    className={`flex gap-2 items-center drop-shadow-lg ${
+                      height ? " text-black" : " text-neutral-800"
                     }`}
                   >
-                    狗尾巴草
+                    我要吃饭
                     {height && (
-                      <div className="rounded-full bg-pure w-3 h-3"></div>
+                      <div className="rounded-full bg-compatible w-3 h-3"></div>
                     )}
                   </div>
-                  <Refresh
-                    className="fill-white"
-                    onClick={() => handleRefresh()}
-                  />
+                  <Refresh onClick={() => handleRefresh()} />
                 </div>
                 {height && (
                   <div className="w-full relative">
-                    <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-black absolute "></div>
-                    <div className=" left-full h-10 w-10 top-0 bg-black absolute "></div>
+                    <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-neutral-200 absolute "></div>
+                    <div className=" left-full h-10 w-10 top-0 bg-neutral-200 absolute "></div>
                     <div className="w-full overflow-x-scroll">
-                      <div className=" p-2 flex flex-row text-white  gap-x-4  w-[120%] ">
-                        <button className="rounded-full outline outline-white outline-1 ">
-                          <div className="mx-3 whitespace-nowarp">吃谎的人</div>
+                      <div className=" p-2 flex flex-row text-black  gap-x-4  w-[120%] ">
+                        <button className="rounded-full outline outline-black outline-1 ">
+                          <div className="mx-3 blackspace-nowarp">吃谎的人</div>
                         </button>
-                        <button className="rounded-full outline outline-white outline-1">
-                          <div className="mx-3 whitespace-nowarp">
-                            我有超能力
+                        <button className="rounded-full outline outline-black outline-1">
+                          <div className="mx-3 blackspace-nowarp">
+                            深水之窗3
                           </div>
                         </button>
-                        <button className="rounded-full outline outline-white outline-1">
-                          <div className="mx-3 whitespace-nowarp">纷争前线</div>
+                        <button className="rounded-full outline outline-black outline-1">
+                          <div className="mx-3 blackspace-nowarp">明天的船</div>
                         </button>
                       </div>
                     </div>
@@ -157,7 +136,7 @@ export const Info = () => {
             </div>
           </div>
           {height && (
-            <div className="px-12 flex flex-row text-white text-[16px] gap-x-4 font-title w-full justify-around">
+            <div className="px-12 flex flex-row text-black text-[16px] gap-x-4 font-title w-full justify-around">
               <div>订阅</div>
               <div>好友</div>
               <div>收藏</div>
@@ -166,9 +145,9 @@ export const Info = () => {
           )}
         </div>
 
-        <div className="relative bg-white py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky top-0 h-[52px] shadow-md shadow-b flex flex-row justify-between">
+        <div className="relative bg-gradient-to-b from-50% to-100% from-[#390F0F] to-black py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky  h-[52px] shadow-md shadow-b flex flex-row justify-between">
           <div
-            className="absolute bg-[#323232]  rounded-xl z-[-1] transition-all ease-in-out duration-300"
+            className="absolute bg-neutral-200  rounded-xl z-[-1] transition-all ease-in-out duration-300"
             id="indicator"
           ></div>
           <button
@@ -177,8 +156,8 @@ export const Info = () => {
               swiperRef.current?.swipeTo(0);
             }}
             name="tabbar"
-            className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 bg-[#323232]${
-              selected === 0 ? " text-white" : " text-darkgray"
+            className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 bg-neutral-200${
+              selected === 0 ? " text-black" : " text-neutral-200"
             }`}
           >
             作品列表
@@ -190,7 +169,7 @@ export const Info = () => {
               swiperRef.current?.swipeTo(1);
             }}
             className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 ${
-              selected === 1 ? " text-white" : " text-darkgray"
+              selected === 1 ? " text-black" : " text-neutral-200"
             }`}
           >
             系列合集
@@ -202,7 +181,7 @@ export const Info = () => {
               swiperRef.current?.swipeTo(2);
             }}
             className={`rounded-xl px-4 font-title  transition-all ease-in-out duration-300 ${
-              selected === 2 ? " text-white" : " text-darkgray"
+              selected === 2 ? " text-black" : " text-neutral-200"
             }`}
           >
             赞助点图
@@ -210,10 +189,10 @@ export const Info = () => {
         </div>
       </div>
       {refresh && (
-        <div className=" text-black w-full pt-16 flex justify-center">
+        <div className=" text-white w-full pt-16 flex justify-center">
           <SpinLoading
             color="white"
-            style={{ "--size": "64px", margin: "auto", "--color": "black" }}
+            style={{ "--size": "64px", margin: "auto" }}
           />
         </div>
       )}
