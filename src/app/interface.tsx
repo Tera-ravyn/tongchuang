@@ -20,3 +20,8 @@ export const mode = atom<string>({
   key: "mode",
   default: "pure",
 });
+
+export const view = atom<string | StaticImageData>({
+  key: "view",
+  default: "",
+});

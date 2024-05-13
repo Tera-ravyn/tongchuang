@@ -8,6 +8,14 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "imglf4.lf127.net",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

@@ -1,0 +1,16 @@
+/* 蚂蚁的list组件的css就是一坨狗屎 */
+.adm-list-item {
+  background: black !important;
+  color: white !important;
+  padding-left: 0 !important;
+}
+.adm-list-default .adm-list-body {
+  border-top: none !important;
+  /* border-bottom: none !important; */
+}
+.adm-list-item-content-main {
+  padding: 0 !important;
+}
+.adm-list-item-content {
+  padding-right: 0 !important;
+}

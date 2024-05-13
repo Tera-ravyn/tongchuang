@@ -2,16 +2,60 @@
 import { Image, Form, SpinLoading, Toast } from "antd-mobile";
 import { AiFillWechat } from "react-icons/ai";
 import { useState } from "react";
+import RadioIcon from "@/components/radio";
+import { useRouter } from "next/navigation";
 const Login = () => {
-  const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const router = useRouter();
   return (
-    <div className=" w-full h-full">
-      <Image
-        // src={}
-        alt=""
-        className="0 ease-in-out duration-300"
-      />
-      <div className="  w-full bg-white mx-auto  px-2 rounded-xl ">
+    <div className=" w-full h-full flex flex-col items-center pt-24">
+      <div className="font-title text-[54px] ">同&nbsp;创</div>
+      <div className="font-title text-[18px] ">一款同人社群交流分享平台</div>
+      <div className="px-24 pt-20 pb-16">
+        <div
+          className="  rounded-2xl bg-neutral-100  w-full mb-8"
+          style={{ boxShadow: "inset 0 3px 5px rgba(0, 0, 0, 0.2)" }}
+        >
+          <input
+            placeholder="输入账号"
+            className="bg-transparent px-4 py-3 text-[18px]"
+          />
+        </div>
+        <div
+          className="  rounded-2xl bg-neutral-100  w-full"
+          style={{ boxShadow: "inset 0 3px 5px rgba(0, 0, 0, 0.2)" }}
+        >
+          <input
+            placeholder="输入密码"
+            type="password"
+            className="bg-transparent px-4 py-3 text-[18px]"
+          />
+        </div>
+      </div>
+      <button
+        onClick={() => {
+          if (checked) {
+            Toast.show({
+              content: "登录成功",
+              duration: 1000,
+            });
+            router.push("modeSelect");
+          } else
+            Toast.show({
+              content: "请先阅读并同意服务协议",
+              duration: 1000,
+            });
+        }}
+        className="bg-gradient-to-r from-pure to-compatible rounded-full py-1 px-20 text-[20px] text-white font-title shadow-md"
+      >
+        登录
+      </button>
+      <div className="flex flex-row items-center pt-12">
+        <RadioIcon checked={checked} setChecked={setChecked} />
+        已阅读并同意<u className="text-red-700">服务协议</u>和
+        <u className="text-red-700">同创隐私保护指引</u>
+      </div>
+      {/* <div className="  w-full bg-white mx-auto  px-2 rounded-xl ">
         <>
           <Form
             requiredMarkStyle="none"
@@ -83,7 +127,7 @@ const Login = () => {
             <div className="mt-4 text-slate-400">微信登录</div>
           </div>
         </>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,8 +1,11 @@
 "use client";
 
-import { useMount } from "ahooks";
+import "../compatible.css";
 import {
+  Collapse,
+  ImageUploader,
   InfiniteScroll,
+  Modal,
   SpinLoading,
   Swiper,
   SwiperRef,
@@ -23,16 +26,21 @@ import Forward from "@/assets/icons/forward.svg";
 import test1 from "@/assets/Image/test1.jpg";
 import test2 from "@/assets/Image/test2.jpeg";
 import dayjs, { Dayjs } from "dayjs";
-import { useRouter } from "next/navigation";
-import { resolve } from "path";
-import { collection, piece } from "@/app/interface";
-import { MdCurrencyYen } from "react-icons/md";
+import { collection, piece, view } from "@/app/interface";
+import { CustomPopup } from "../../CustomPopup";
+import Ufo from "@/assets/icons/ufo.svg";
+import More from "@/assets/icons/more.svg";
+import Down from "@/assets/icons/down.svg";
+import Hide from "@/assets/icons/hide.svg";
+import { history } from "../staticData";
+import { useRecoilState } from "recoil";
 
 export const Info = () => {
   const swiperRef = useRef<SwiperRef>(null);
   const [height, setHeight] = useState(true);
   const [selected, setSelected] = useState(0);
   const [refresh, setRefresh] = useState(false);
+  const [panel, setPanel] = useState(false);
   const curHeight = useRef(true);
 
   const handleRefresh = () => {
@@ -81,6 +89,9 @@ export const Info = () => {
 
   return (
     <div className="relative">
+      <CustomPopup state={panel} setState={setPanel}>
+        <TagManage />
+      </CustomPopup>
       <div className="w-full sticky top-0 z-[100] ">
         <div
           onClick={() => {
@@ -115,7 +126,12 @@ export const Info = () => {
                   <Refresh onClick={() => handleRefresh()} />
                 </div>
                 {height && (
-                  <div className="w-full relative">
+                  <div
+                    className="w-full relative"
+                    onClick={() => {
+                      setPanel(true);
+                    }}
+                  >
                     <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-neutral-200 absolute "></div>
                     <div className=" left-full h-10 w-10 top-0 bg-neutral-200 absolute "></div>
                     <div className="w-full overflow-x-scroll">
@@ -432,8 +448,14 @@ const SeriesItem = ({ item }: { item: collection }) => {
     </div>
   );
 };
+const upload = async (file: File) => {
+  return {
+    url: "",
+  };
+};
 //赞助点图
 const Sponsor = () => {
+  const [largeImg, setLargeImg] = useRecoilState(view);
   return (
     <div className="px-4">
       <div className="w-full bg-neutral-200 rounded-2xl py-4 flex flex-col gap-y-4">
@@ -442,14 +464,19 @@ const Sponsor = () => {
           <div className="font-title drop-shadow-lg ">我要吃饭</div>
           &nbsp;发出赞助点图请求：
         </div>
-        <div className="flex flex-col items-center gap-y-4">
+        <div className="flex flex-col items-center gap-y-3">
+          <Ufo className="text-black w-10 h-10 pl-1" />
           <div className="flex flex-row w-[64px] px-2 py-1 bg-neutral-300 rounded-md">
-            <input className="bg-transparent w-full" type="number"></input>
+            <input
+              className="bg-transparent w-full"
+              type="number"
+              placeholder="---"
+            ></input>
             <b>￥</b>
           </div>
           <div className="w-[75%] px-2 py-1 bg-neutral-300 rounded-md">
             <textarea
-              className="bg-transparent w-full h-full resize-none"
+              className="bg-transparent w-full h-[6rem] resize-none"
               placeholder="在这里写下自己的需求吧"
             ></textarea>
           </div>
@@ -458,6 +485,140 @@ const Sponsor = () => {
           </button>
         </div>
       </div>
+      <div className="w-full h-[2px] bg-gray my-4"></div>
+      <div className="flex flex-wrap justify-between">
+        {history.map((item, index) => (
+          <div
+            className="overflow-hidden relative w-[120px] h-[120px]  "
+            key={item + index}
+          >
+            <Image
+              onClick={() => {
+                setLargeImg(item);
+              }}
+              style={{ objectFit: "cover" }}
+              src={item}
+              fill={true}
+              // sizes="100vw"
+              alt=""
+            />
+          </div>
+        ))}
+      </div>
+      <div className="w-full h-[2px] bg-gray my-4"></div>
+      <div className="w-full text-center">
+        <u
+          className="text-white"
+          onClick={() =>
+            Modal.show({
+              content: "我也不知道捏……",
+              closeOnMaskClick: true,
+              actions: [],
+            })
+          }
+        >
+          什么是赞助点图？赞助点图与普通点图和约稿的区别？
+        </u>
+      </div>
+    </div>
+  );
+};
+
+const TagManage = () => {
+  const subList = [
+    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
+    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
+  ];
+  const blockList = [
+    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
+    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
+  ];
+  return (
+    <div className="bg-black">
+      <Collapse defaultActiveKey={["1"]} style={{ padding: "4px 16px" }}>
+        <Collapse.Panel
+          key="1"
+          arrow={<Down className="w-8 h-8 text-white" />}
+          title={
+            <div className="text-[20px] font-title py-2 pl-1">订阅列表</div>
+          }
+          className="bg-black"
+        >
+          {subList.map((item, index) => (
+            <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
+              <Collapse.Panel
+                key={String(index)}
+                arrow={(active) =>
+                  active ? (
+                    <More className="w-8 h-8 text-white" />
+                  ) : (
+                    <Hide className="w-8 h-8 text-white" />
+                  )
+                }
+                title={
+                  <div className="py-3 pl-1">
+                    <button className="text-[16px] font-title px-6 py-[0.5px] rounded-full outline outline-2 outline-white">
+                      {item.ip}
+                    </button>
+                  </div>
+                }
+              >
+                <div className="flex flex-wrap gap-4 px-6 py-3">
+                  {item.tags.map((tag, index) => (
+                    <button
+                      key={`subscribeTag${index}`}
+                      className="text-[16px]  px-6 py-[0.5px] rounded-full outline outline-1 outline-white"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </Collapse.Panel>
+            </Collapse>
+          ))}
+        </Collapse.Panel>
+        <Collapse.Panel
+          key="2"
+          arrow={<Down className="w-8 h-8 text-white" />}
+          title={
+            <div className="text-[20px] font-title py-2 pl-1">屏蔽列表</div>
+          }
+          style={{ background: "black", color: "white" }}
+        >
+          {blockList.map((item, index) => (
+            <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
+              <Collapse.Panel
+                key={String(index)}
+                arrow={(active) =>
+                  active ? (
+                    <More className="w-8 h-8 text-white" />
+                  ) : (
+                    <Hide className="w-8 h-8 text-white" />
+                  )
+                }
+                title={
+                  <div className="py-3 pl-2">
+                    <button className="text-[16px] font-title px-6 py-[0.5px] rounded-full outline outline-2 outline-white">
+                      {item.ip}
+                    </button>
+                  </div>
+                }
+              >
+                <div className="flex flex-wrap gap-4 px-6 py-3">
+                  {item.tags.map((tag, index) => (
+                    <button
+                      key={`subscribeTag${index}`}
+                      className="text-[16px]  px-6 py-[0.5px] rounded-full outline outline-1 outline-white"
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </Collapse.Panel>
+            </Collapse>
+          ))}
+        </Collapse.Panel>
+      </Collapse>
     </div>
   );
 };
