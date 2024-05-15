@@ -14,6 +14,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "imglf4.lf127.net",
       },
+      {
+        protocol: "https",
+        hostname: "imglf5.lf127.net",
+      },
+      {
+        protocol: "https",
+        hostname: "imglf6.lf127.net",
+      },
     ],
   },
 };

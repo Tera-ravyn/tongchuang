@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Info } from "./components";
 const HomePage = () => {
   return (
-    <div className="">
+    <div className="w-full h-full">
       <Info />
     </div>
   );

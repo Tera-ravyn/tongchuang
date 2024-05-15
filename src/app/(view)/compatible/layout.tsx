@@ -11,8 +11,10 @@ export default function RootLayout({
 }) {
   const [largeImg, setLargeImg] = useRecoilState(view);
   return (
-    <div className="w-full  bg-black ">
-      <div className="mb-[48px]">{children}</div>
+    <div className="w-full h-full bg-black overflow-y-hidden ">
+      <div className="w-full h-full pb-[48px] overflow-y-hidden">
+        {children}
+      </div>
       {largeImg !== "" && (
         <div
           className="w-full h-full bg-[rgba(0,0,0,0.85)] fixed top-0 z-[200] transition-all duration-300 ease-in-out"

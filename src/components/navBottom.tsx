@@ -30,7 +30,7 @@ const Nav = ({ color, textColor }: { color: string; textColor: string }) => {
   };
   const tabs = [
     {
-      key: `/${type}/homepage`,
+      key: `/${type}`,
       title: "个人首页",
       icon: pathname.includes(`homepage`) ? (
         <Home className={`w-6 h-6 ${textColor}`} />
@@ -82,7 +82,10 @@ const Nav = ({ color, textColor }: { color: string; textColor: string }) => {
   });
 
   return (
-    <div className={`bg-gradient-to-r ${color} fixed bottom-0 w-full`}>
+    <div
+      className={`bg-gradient-to-r ${color} fixed bottom-0 w-full`}
+      style={{ boxShadow: " 0px -6px 20px rgba(0, 0, 0, 0.3)" }}
+    >
       <TabBar activeKey={pathname} onChange={(value) => setRouteActive(value)}>
         {tabs.map((item) => (
           <TabBar.Item

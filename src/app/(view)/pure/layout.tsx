@@ -11,8 +11,10 @@ export default function RootLayout({
 }) {
   const [largeImg, setLargeImg] = useRecoilState(view);
   return (
-    <div className="w-full ">
-      <div className="mb-[48px]">{children}</div>
+    <div className="w-full h-full bg-white overflow-y-hidden ">
+      <div className="w-full h-full pb-[48px] overflow-y-hidden">
+        {children}
+      </div>
       {largeImg !== "" && (
         <div
           className="w-full h-full bg-[rgba(0,0,0,0.85)] fixed top-0 z-[200]"
@@ -28,10 +30,6 @@ export default function RootLayout({
           />
         </div>
       )}
-      <div
-        className="w-full h-[48px] absolute bottom-0 shadow-lg bg-red-300 z-[0]"
-        style={{ boxShadow: " 0px -6px 20px rgba(0, 0, 0, 0.3)" }}
-      ></div>
       <Nav color=" from-white  to-pure " textColor=" text-black "></Nav>
     </div>
   );

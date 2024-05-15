@@ -1,8 +1,9 @@
 "use client";
 
-import "../pure.css";
+import "./compatible.css";
 import {
   Collapse,
+  ImageUploader,
   InfiniteScroll,
   Modal,
   SpinLoading,
@@ -10,7 +11,14 @@ import {
   SwiperRef,
   Toast,
 } from "antd-mobile";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  forwardRef,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Refresh from "@/assets/icons/refresh.svg";
 import Image, { StaticImageData } from "next/image";
 import avatar from "@/assets/Image/avatar.jpg";
@@ -22,36 +30,45 @@ import CrownOutline from "@/assets/icons/crown-outline.svg";
 import Favorites from "@/assets/icons/favorites.svg";
 import FavoritesOutline from "@/assets/icons/favorites-outline.svg";
 import Forward from "@/assets/icons/forward.svg";
-import test3 from "@/assets/Image/test3.jpeg";
-import test4 from "@/assets/Image/test4.jpg";
 import dayjs, { Dayjs } from "dayjs";
-import { piece, collection, view } from "@/app/interface";
+import { collection, piece, view } from "@/app/interface";
+import { CustomPopup } from "../CustomPopup";
 import Ufo from "@/assets/icons/ufo.svg";
 import More from "@/assets/icons/more.svg";
 import Down from "@/assets/icons/down.svg";
 import Hide from "@/assets/icons/hide.svg";
-import { history } from "../staticData";
+import { PiecesList, blockList, history, series, subList } from "./staticData";
 import { useRecoilState } from "recoil";
-import { CustomPopup } from "../../CustomPopup";
 
 export const Info = () => {
-  const [refresh, setRefresh] = useState(false);
   const swiperRef = useRef<SwiperRef>(null);
+  const piecesRef = useRef<any>(null);
+  const seriesRef = useRef<any>(null);
+  const sponsorRef = useRef<any>(null);
+  const scroll = useRef([0, 0, 0]);
   const [height, setHeight] = useState(true);
   const [selected, setSelected] = useState(0);
+  const [refresh, setRefresh] = useState(false);
   const [panel, setPanel] = useState(false);
   const curHeight = useRef(true);
+
   const handleRefresh = () => {
     setRefresh(true);
     setTimeout(() => {
       setRefresh(false);
-    }, 5000);
+    }, 3000);
   };
-  const handleScroll = () => {
-    const scrollTop = document.body.scrollTop;
-    const threshold = 3; // 可以根据需要调整
 
-    if (scrollTop > threshold) {
+  const handleScroll = () => {
+    const pieces = piecesRef.current?.scrollTop;
+    const series = seriesRef.current?.scrollTop;
+    const sponsor = sponsorRef.current?.scrollTop;
+    const scrollRef = [pieces, series, sponsor];
+    const threshold = 3; // 可以根据需要调整
+    const current = scroll.current.findIndex(
+      (item, index) => item !== scrollRef[index]
+    );
+    if (scrollRef[current] && scrollRef[current] > threshold) {
       setHeight(false);
       curHeight.current = false;
 
@@ -70,7 +87,7 @@ export const Info = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [piecesRef, seriesRef, sponsorRef]);
   useEffect(() => {
     const item = document.getElementsByName("tabbar").item(selected);
     const indicator = document.getElementById("indicator");
@@ -85,7 +102,7 @@ export const Info = () => {
   }, [selected]);
 
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       <CustomPopup state={panel} setState={setPanel}>
         <TagManage />
       </CustomPopup>
@@ -94,11 +111,12 @@ export const Info = () => {
           onClick={() => {
             setHeight(true);
           }}
-          className={`m-auto flex flex-col items-center justify-evenly w-full bg-black rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
+          className={`m-auto flex flex-col items-center justify-evenly w-full bg-neutral-200 rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
             height ? "h-[212px]" : "h-[83px]"
           }`}
         >
-          <div className="w-full px-4 flex justify-between items-center text-white ">
+          <div className="w-full h-full bg-[#390F0F] absolute z-[-1]"></div>
+          <div className="w-full px-4 flex justify-between items-center text-black ">
             <div className="flex justify-start items-center gap-x-3 w-full">
               <Image
                 width={height ? 80 : 40}
@@ -110,19 +128,16 @@ export const Info = () => {
               <div className="  m-auto w-full  ">
                 <div className="font-title  p-2 text-[20px] flex flex-row items-center w-full justify-between">
                   <div
-                    className={`flex gap-2 items-center ${
-                      height ? "text-white" : "text-gray"
+                    className={`flex gap-2 items-center drop-shadow-lg ${
+                      height ? " text-black" : " text-neutral-800"
                     }`}
                   >
-                    狗尾巴草
+                    我要吃饭
                     {height && (
-                      <div className="rounded-full bg-pure w-3 h-3"></div>
+                      <div className="rounded-full bg-compatible w-3 h-3"></div>
                     )}
                   </div>
-                  <Refresh
-                    className="text-white"
-                    onClick={() => handleRefresh()}
-                  />
+                  <Refresh onClick={() => handleRefresh()} />
                 </div>
                 {height && (
                   <div
@@ -131,20 +146,20 @@ export const Info = () => {
                       setPanel(true);
                     }}
                   >
-                    <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-black absolute "></div>
-                    <div className=" left-full h-10 w-10 top-0 bg-black absolute "></div>
+                    <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-neutral-200 absolute "></div>
+                    <div className=" left-full h-10 w-10 top-0 bg-neutral-200 absolute "></div>
                     <div className="w-full overflow-x-scroll">
-                      <div className=" p-2 flex flex-row text-white  gap-x-4  w-[120%] ">
-                        <button className="rounded-full outline outline-white outline-1 ">
-                          <div className="mx-3 whitespace-nowarp">吃谎的人</div>
+                      <div className=" p-2 flex flex-row text-black  gap-x-4  w-[120%] ">
+                        <button className="rounded-full shadow-lg outline outline-black outline-1 ">
+                          <div className="mx-3 blackspace-nowarp">吃谎的人</div>
                         </button>
-                        <button className="rounded-full outline outline-white outline-1">
-                          <div className="mx-3 whitespace-nowarp">
-                            我有超能力
+                        <button className="rounded-full  shadow-lg outline outline-black outline-1">
+                          <div className="mx-3 blackspace-nowarp">
+                            深水之窗3
                           </div>
                         </button>
-                        <button className="rounded-full outline outline-white outline-1">
-                          <div className="mx-3 whitespace-nowarp">纷争前线</div>
+                        <button className="rounded-full  shadow-lg outline outline-black outline-1">
+                          <div className="mx-3 blackspace-nowarp">明天的船</div>
                         </button>
                       </div>
                     </div>
@@ -154,7 +169,7 @@ export const Info = () => {
             </div>
           </div>
           {height && (
-            <div className="px-12 flex flex-row text-white text-[16px] gap-x-4 font-title w-full justify-around">
+            <div className="px-12 flex flex-row text-black text-[16px] gap-x-4 font-title w-full justify-around">
               <div>订阅</div>
               <div>好友</div>
               <div>收藏</div>
@@ -163,9 +178,9 @@ export const Info = () => {
           )}
         </div>
 
-        <div className="relative bg-white py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky top-0 h-[52px] shadow-md shadow-b flex flex-row justify-between">
+        <div className="relative bg-gradient-to-b from-50% to-100% from-[#390F0F] to-black py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky  h-[52px] shadow-md shadow-b flex flex-row justify-between">
           <div
-            className="absolute bg-[#323232]  rounded-xl z-[-1] transition-all ease-in-out duration-300"
+            className="absolute bg-neutral-200  rounded-xl z-[-1] transition-all ease-in-out duration-300"
             id="indicator"
           ></div>
           <button
@@ -174,8 +189,8 @@ export const Info = () => {
               swiperRef.current?.swipeTo(0);
             }}
             name="tabbar"
-            className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 bg-[#323232]${
-              selected === 0 ? " text-white" : " text-darkgray"
+            className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 bg-neutral-200${
+              selected === 0 ? " text-black" : " text-neutral-200"
             }`}
           >
             作品列表
@@ -187,7 +202,7 @@ export const Info = () => {
               swiperRef.current?.swipeTo(1);
             }}
             className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 ${
-              selected === 1 ? " text-white" : " text-darkgray"
+              selected === 1 ? " text-black" : " text-neutral-200"
             }`}
           >
             系列合集
@@ -199,7 +214,7 @@ export const Info = () => {
               swiperRef.current?.swipeTo(2);
             }}
             className={`rounded-xl px-4 font-title  transition-all ease-in-out duration-300 ${
-              selected === 2 ? " text-white" : " text-darkgray"
+              selected === 2 ? " text-black" : " text-neutral-200"
             }`}
           >
             赞助点图
@@ -207,15 +222,16 @@ export const Info = () => {
         </div>
       </div>
       {refresh && (
-        <div className=" text-black w-full pt-4 flex justify-center">
+        <div className=" text-white w-full pt-4 flex justify-center">
           <SpinLoading
             color="white"
-            style={{ "--size": "64px", margin: "auto", "--color": "black" }}
+            style={{ "--size": "64px", margin: "auto" }}
           />
         </div>
       )}
-      <div className="pt-4">
+      <div className="pt-4 w-full h-full ">
         <Swiper
+          style={{ background: "black", width: "100%", height: "100%" }}
           indicator={() => null}
           ref={swiperRef}
           defaultIndex={selected}
@@ -223,14 +239,14 @@ export const Info = () => {
             setSelected(index);
           }}
         >
-          <Swiper.Item className=" w-full ">
-            <Pieces />
+          <Swiper.Item className=" w-full h-full">
+            <Pieces ref={piecesRef} />
           </Swiper.Item>
-          <Swiper.Item className=" w-full ">
-            <Series />
+          <Swiper.Item className=" w-full h-full">
+            <Series ref={seriesRef} />
           </Swiper.Item>
-          <Swiper.Item className=" w-full ">
-            <Sponsor />
+          <Swiper.Item className=" w-full h-full ">
+            <Sponsor ref={sponsorRef} />
           </Swiper.Item>
         </Swiper>
       </div>
@@ -250,35 +266,14 @@ const generateDates = (count: number) => {
   }
   return randomDates.sort((a, b) => b.diff(a)); // 降序排序，确保从最新到最旧
 };
-
 //作品合集
-const Pieces = () => {
+const Pieces = forwardRef<HTMLDivElement>((props, ref) => {
   const [hasMore, setHasMore] = useState(true);
-  const PiecesList = [
-    {
-      cover: avatar,
-      description: "不要再打游戏了好吗？好的。但打游戏是一种人生态度……",
-      time: dayjs("2024-04-13 21:29:10"),
-    },
-    {
-      cover: test,
-      description: "我爱吃饭，饭真好吃，真想一辈子吃饭。",
-      time: dayjs("2024-04-13 19:55:24"),
-    },
-    {
-      cover: avatar,
-      description: "从前有座山，山里有座庙，庙里有个老和尚给小和尚讲故事",
-      time: dayjs("2024-02-18 00:03:35"),
-    },
-    {
-      cover: avatar,
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem in consequuntur similique dignissimos quaerat earum explicabo temporibus vitae nobis culpa enim, eaque ab voluptate quis aspernatur quod alias architecto? Incidunt!",
-      time: dayjs("2024-01-17 12:26:11"),
-    },
-  ];
   return (
-    <div className="w-full flex flex-col justify-between items-center gap-y-6">
+    <div
+      ref={ref}
+      className="pb-[169px] w-full h-full overflow-y-auto flex flex-col justify-between items-center gap-y-6"
+    >
       {PiecesList.map((item, index) => (
         <PieceItem item={item} key={`pieces${index}`} />
       ))}
@@ -299,7 +294,8 @@ const Pieces = () => {
       />
     </div>
   );
-};
+});
+Pieces.displayName = "Pieces";
 const PieceItem = ({ item }: { item: piece }) => {
   return (
     <div className="bg-neutral-200 w-full rounded-2xl px-8  py-3 flex flex-col items-center">
@@ -374,35 +370,16 @@ const InteractIcon = ({
   );
 };
 //系列合集
-const Series = () => {
-  const series = [
-    {
-      cover: test3,
-      title: "外币巴伯",
-      type: "pure",
-      tag: "外壁吧薄",
-      tags: ["歪比巴伯", "崴笔吧泊"],
-      description:
-        "Voluptatum esse assumenda architecto quaerat optio perferendis dolore temporibus minima voluptate? Doloribus corrupti saepe repellat deleniti ullam assumenda voluptatibus delectus debitis ad!",
-    },
-    {
-      cover: test4,
-      title: "外币巴伯",
-      type: "compatible",
-      tag: "外壁吧薄",
-      tags: ["歪比巴伯", "崴笔吧泊"],
-      description:
-        "Minima ad molestias libero, amet facere quasi? Vel earum quas, facere reprehenderit inventore nesciunt maiores quod dolorum architecto praesentium, quidem laudantium suscipit.",
-    },
-  ];
+const Series = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div className="flex flex-col gap-y-6 px-4">
+    <div ref={ref} className="flex flex-col gap-y-6 px-4 pb-[169px]">
       {series.map((item, index) => (
         <SeriesItem item={item} key={`collection${index}`}></SeriesItem>
       ))}
     </div>
   );
-};
+});
+Series.displayName = "Series";
 const SeriesItem = ({ item }: { item: collection }) => {
   return (
     <div className="w-full bg-neutral-200 rounded-2xl ">
@@ -448,11 +425,16 @@ const SeriesItem = ({ item }: { item: collection }) => {
     </div>
   );
 };
+const upload = async (file: File) => {
+  return {
+    url: "",
+  };
+};
 //赞助点图
-const Sponsor = () => {
+const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
   const [largeImg, setLargeImg] = useRecoilState(view);
   return (
-    <div className="px-4">
+    <div ref={ref} className="overflow-y-auto px-4 w-full h-full pb-[169px]">
       <div className="w-full bg-neutral-200 rounded-2xl py-4 flex flex-col gap-y-4">
         <div className=" flex flex-row px-6 ">
           向&nbsp;
@@ -481,10 +463,10 @@ const Sponsor = () => {
         </div>
       </div>
       <div className="w-full h-[2px] bg-gray my-4"></div>
-      <div className="flex flex-wrap justify-between">
+      <div className="grid grid-cols-3 w-full gap-4 ">
         {history.map((item, index) => (
           <div
-            className="overflow-hidden relative w-[120px] h-[120px]  "
+            className="overflow-hidden relative w-full pb-[100%]  "
             key={item + index}
           >
             <Image
@@ -503,7 +485,7 @@ const Sponsor = () => {
       <div className="w-full h-[2px] bg-gray my-4"></div>
       <div className="w-full text-center">
         <u
-          className="text-black"
+          className="text-white"
           onClick={() =>
             Modal.show({
               content: "我也不知道捏……",
@@ -517,41 +499,34 @@ const Sponsor = () => {
       </div>
     </div>
   );
-};
-
+});
+Sponsor.displayName = "Sponsor";
 const TagManage = () => {
-  const subList = [
-    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
-    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
-  ];
-  const blockList = [
-    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
-    { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
-  ];
   return (
-    <div>
+    <div className="bg-black w-ful">
       <Collapse defaultActiveKey={["1"]} style={{ padding: "4px 16px" }}>
         <Collapse.Panel
           key="1"
-          arrow={<Down className="w-8 h-8 text-black" />}
+          arrow={<Down className="w-8 h-8 text-white" />}
           title={
-            <div className="text-[20px] font-title py-2 pl-1">屏蔽列表</div>
+            <div className="text-[20px] font-title py-2 pl-1">订阅列表</div>
           }
+          className="bg-black"
         >
-          {blockList.map((item, index) => (
+          {subList.map((item, index) => (
             <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
               <Collapse.Panel
                 key={String(index)}
                 arrow={(active) =>
                   active ? (
-                    <More className="w-8 h-8 text-black" />
+                    <More className="w-8 h-8 text-white" />
                   ) : (
-                    <Hide className="w-8 h-8 text-black" />
+                    <Hide className="w-8 h-8 text-white" />
                   )
                 }
                 title={
                   <div className="py-3 pl-1">
-                    <button className="text-[16px] font-title px-6 py-[0.5px] rounded-full outline outline-2 outline-black text-black">
+                    <button className="text-[16px] font-title px-6 py-[0.5px] rounded-full outline outline-2 outline-white">
                       {item.ip}
                     </button>
                   </div>
@@ -561,7 +536,7 @@ const TagManage = () => {
                   {item.tags.map((tag, index) => (
                     <button
                       key={`subscribeTag${index}`}
-                      className="text-[16px]  px-6 py-[0.5px] rounded-full outline outline-1 outline-black text-black"
+                      className="text-[16px]  px-6 py-[0.5px] rounded-full outline outline-1 outline-white"
                     >
                       {tag}
                     </button>
@@ -573,25 +548,26 @@ const TagManage = () => {
         </Collapse.Panel>
         <Collapse.Panel
           key="2"
-          arrow={<Down className="w-8 h-8 text-black" />}
+          arrow={<Down className="w-8 h-8 text-white" />}
           title={
-            <div className="text-[20px] font-title py-2 pl-1">订阅列表</div>
+            <div className="text-[20px] font-title py-2 pl-1">屏蔽列表</div>
           }
+          style={{ background: "black", color: "white" }}
         >
-          {subList.map((item, index) => (
+          {blockList.map((item, index) => (
             <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
               <Collapse.Panel
                 key={String(index)}
                 arrow={(active) =>
                   active ? (
-                    <More className="w-8 h-8 text-black" />
+                    <More className="w-8 h-8 text-white" />
                   ) : (
-                    <Hide className="w-8 h-8 text-black" />
+                    <Hide className="w-8 h-8 text-white" />
                   )
                 }
                 title={
                   <div className="py-3 pl-2">
-                    <button className="text-[16px] font-title px-6 py-[0.5px] rounded-full outline outline-2 outline-black text-black">
+                    <button className="text-[16px] font-title px-6 py-[0.5px] rounded-full outline outline-2 outline-white">
                       {item.ip}
                     </button>
                   </div>
@@ -601,7 +577,7 @@ const TagManage = () => {
                   {item.tags.map((tag, index) => (
                     <button
                       key={`subscribeTag${index}`}
-                      className="text-[16px]  px-6 py-[0.5px] rounded-full outline outline-1 outline-black text-black"
+                      className="text-[16px]  px-6 py-[0.5px] rounded-full outline outline-1 outline-white"
                     >
                       {tag}
                     </button>
