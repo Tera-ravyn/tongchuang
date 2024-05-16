@@ -14,6 +14,7 @@ const config: Config = {
       colors: {
         pure: "rgba(0,186,173)",
         compatible: "rgba(212,48,48)",
+        bblack: "rgba(48,48,48)",
         gray: "rgba(204,204,204)",
         darkgray: "rgba(126,126,126)",
       },

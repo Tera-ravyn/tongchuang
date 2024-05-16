@@ -23,6 +23,9 @@ interface style {
   title?: string;
   background?: string;
   navBg?: string;
+  type: string;
+  noShadow?: boolean;
+  right?: React.ReactElement;
 }
 /**
  * @param state 弹窗是否可见
@@ -36,16 +39,18 @@ interface style {
  * @returns
  */
 export const CustomPopup = ({
+  title,
+  type,
   state,
   setState,
   children,
+  noShadow = false,
   className = "my-5 mx-4",
   fontSize = 24,
-  color = "black",
   forbidden = false,
   destroyOnClose = true,
+  right,
 }: panelState & backArrow & style) => {
-  const type = useRecoilValue(mode);
   return (
     <Popup
       destroyOnClose={destroyOnClose}
@@ -53,30 +58,38 @@ export const CustomPopup = ({
       visible={state}
       bodyStyle={{
         width: "100vw",
-        background: type === "pure" ? "white" : "black",
+        background: type === "pure" ? "#D4D4D4" : "#303030",
         overflowY: "scroll",
       }}
     >
-      <div className={"bg-white" + " h-[48px] z-30 sticky top-0 align-center"}>
+      <div className={" h-[48px] z-30 sticky top-0 align-center"}>
         <NavBar
+          right={right}
           style={{
-            background: type === "pure" ? "white" : "black",
-            color: type === "pure" ? "black" : "white",
+            background: noShadow === (type === "pure") ? "#D4D4D4" : "#303030",
+            color: noShadow === (type === "pure") ? "black" : "white",
             width: "100%",
             height: "100%",
+            borderRadius: "0 0 1rem 1rem",
             fontFamily: "阿里妈妈数黑体 Bold",
+            boxShadow: noShadow
+              ? ""
+              : "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
           }}
           onBack={() => setState(false || forbidden)}
           backArrow={
             <Back
-              className={`w-10 h-10 z-[3] cursor-pointer  ${
-                type === "pure" ? " text-black " : " text-white "
-              }`}
+              className={`w-10 h-10 z-[3] cursor-pointer  
+             
+              `}
+              style={{
+                color: noShadow === (type === "pure") ? "black" : "white",
+              }}
               onClick={() => setState(false)}
             />
           }
         >
-          标签管理
+          {title}
         </NavBar>
       </div>
       {/* <Back

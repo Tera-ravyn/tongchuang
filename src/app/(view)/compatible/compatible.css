@@ -1,6 +1,6 @@
 /* 蚂蚁的list组件的css就是一坨狗屎 */
 .adm-list-item {
-  background: black !important;
+  background: #303030 !important;
   color: white !important;
   padding-left: 0 !important;
 }

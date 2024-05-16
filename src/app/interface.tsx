@@ -25,3 +25,50 @@ export const view = atom<string | StaticImageData>({
   key: "view",
   default: "",
 });
+
+export const generateDates = (count: number) => {
+  const startDate = dayjs("2024-01-01");
+  const endDate = dayjs("2024-5-11");
+
+  const randomDates = [];
+  for (let i = 0; i < count; i++) {
+    const randomMilliseconds =
+      Math.random() * endDate.diff(startDate, "milliseconds");
+    const date = startDate.add(randomMilliseconds, "milliseconds");
+    randomDates.push(date);
+  }
+  return randomDates.sort((a, b) => b.diff(a)); // 降序排序，确保从最新到最旧
+};
+
+export const randomDates = () => {
+  const startDate = dayjs("2024-01-01");
+  const endDate = dayjs("2024-5-11");
+  const randomMilliseconds =
+    Math.random() * endDate.diff(startDate, "milliseconds");
+  const date = startDate.add(randomMilliseconds, "milliseconds");
+  return date;
+};
+
+export interface pieceType {
+  title: string;
+  cover: string;
+  date: dayjs.Dayjs;
+  context: string;
+  user: string;
+  userIcon: string | StaticImageData;
+  type: string;
+  class?: string;
+  ip: string;
+  tags: string[];
+  pawn: number;
+  crown: number;
+  fav: number;
+  share: number;
+  comments: comment[];
+}
+export interface comment {
+  user: string;
+  userIcon: string | StaticImageData;
+  context: string;
+  date: dayjs.Dayjs;
+}

@@ -98,7 +98,13 @@ export const Info = () => {
 
   return (
     <div className="relative w-full h-full">
-      <CustomPopup state={panel} setState={setPanel}>
+      <CustomPopup
+        state={panel}
+        setState={setPanel}
+        type="pure"
+        title="标签管理"
+        noShadow
+      >
         <TagManage />
       </CustomPopup>
       <div className="w-full sticky top-0 z-[100] ">
@@ -106,7 +112,7 @@ export const Info = () => {
           onClick={() => {
             setHeight(true);
           }}
-          className={`m-auto flex flex-col items-center justify-evenly w-full bg-black rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
+          className={`m-auto flex flex-col items-center justify-evenly w-full bg-bblack rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
             height ? "h-[212px]" : "h-[83px]"
           }`}
         >
@@ -144,7 +150,7 @@ export const Info = () => {
                     }}
                   >
                     <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-black absolute "></div>
-                    <div className=" left-full h-10 w-10 top-0 bg-black absolute "></div>
+                    <div className=" left-full h-10 w-10 top-0 bg-bblack absolute "></div>
                     <div className="w-full overflow-x-scroll">
                       <div className=" p-2 flex flex-row text-white  gap-x-4  w-auto w-[160%]">
                         <button className="rounded-full outline outline-white outline-1 whitespace-nowarp">
@@ -249,19 +255,6 @@ export const Info = () => {
       </div>
     </div>
   );
-};
-const generateDates = (count: number) => {
-  const startDate = dayjs("2024-01-01");
-  const endDate = dayjs("2024-5-11");
-
-  const randomDates = [];
-  for (let i = 0; i < count; i++) {
-    const randomMilliseconds =
-      Math.random() * endDate.diff(startDate, "milliseconds");
-    const date = startDate.add(randomMilliseconds, "milliseconds");
-    randomDates.push(date);
-  }
-  return randomDates.sort((a, b) => b.diff(a)); // 降序排序，确保从最新到最旧
 };
 
 //作品合集
@@ -501,16 +494,16 @@ Sponsor.displayName = "Sponsor";
 const TagManage = () => {
   return (
     <div>
-      <Collapse defaultActiveKey={["1"]} style={{ padding: "4px 16px" }}>
+      <Collapse defaultActiveKey={["0", "1"]} style={{ padding: "4px 16px" }}>
         <Collapse.Panel
-          key="1"
+          key="0"
           arrow={<Down className="w-8 h-8 text-black" />}
           title={
             <div className="text-[20px] font-title py-2 pl-1">屏蔽列表</div>
           }
         >
           {blockList.map((item, index) => (
-            <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
+            <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}
                 arrow={(active) =>
@@ -543,14 +536,14 @@ const TagManage = () => {
           ))}
         </Collapse.Panel>
         <Collapse.Panel
-          key="2"
+          key="1"
           arrow={<Down className="w-8 h-8 text-black" />}
           title={
             <div className="text-[20px] font-title py-2 pl-1">订阅列表</div>
           }
         >
           {subList.map((item, index) => (
-            <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
+            <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}
                 arrow={(active) =>

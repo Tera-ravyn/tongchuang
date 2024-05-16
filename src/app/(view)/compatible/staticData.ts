@@ -1,3 +1,4 @@
+import { randomDates } from "@/app/interface";
 import avatar from "@/assets/Image/avatar.jpg";
 import test from "@/assets/Image/test0.jpeg";
 import test1 from "@/assets/Image/test1.jpg";
@@ -70,6 +71,225 @@ export const history = [
 ];
 
 /*---------广场相关---------*/
+//广场作品浏览列表
+export const discovery = [
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover: "",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+].sort((a, b) => b.date.diff(a.date));
 //企划列表
 export const project = [
   {
@@ -88,15 +308,30 @@ export const project = [
     ip: "tag1",
     //其他tag
     tags: ["tag1", "tag2", "tag3"],
-    // //主办方
-    // host: "社团名称",
-    // //企划形式
-    // form: "线上",
-    // //企划介绍
-    // introduction: "这是一个咕咕咕的企划",
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    //评论
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+    //正文
     context:
       "<p>主题IP：XXX漫画<br />主办方：X0社团/个人<br />企划形式：线上24h展览/线下会展/讨论某话会<br />企划介绍：求求你&hellip;</p>",
-    date: dayjs("2024-1-2"),
+    date: randomDates(),
+    class: "project",
   },
   {
     user: "用户昵称",
@@ -107,11 +342,13 @@ export const project = [
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
     ip: "tag1",
     tags: ["tag1", "tag2", "tag3"],
-    // host: "社团名称",
-    // form: "线上",
-    // introduction: "",
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
     context: "<p>这是一个咕咕咕的企划</p>",
-    date: dayjs("2024-1-2"),
+    date: randomDates(),
+    class: "project",
   },
   {
     user: "用户昵称",
@@ -121,12 +358,15 @@ export const project = [
     cover: "",
     ip: "tag1",
     tags: ["tag1", "tag2", "tag3"],
-    // host: "",
-    // form: "",
-    // introduction: "这是一个咕咕咕的企划",
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
-    date: dayjs("2024-1-2"),
+    date: randomDates(),
+    class: "project",
   },
-];
+].sort((a, b) => b.date.diff(a.date));
+//历史搜索记录
 export const searchHistory = ["词条1", "词条2", "词条3"];

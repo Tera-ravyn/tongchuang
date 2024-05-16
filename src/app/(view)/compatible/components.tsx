@@ -103,7 +103,13 @@ export const Info = () => {
 
   return (
     <div className="relative w-full h-full">
-      <CustomPopup state={panel} setState={setPanel}>
+      <CustomPopup
+        state={panel}
+        setState={setPanel}
+        title="标签管理"
+        type="compatible"
+        noShadow
+      >
         <TagManage />
       </CustomPopup>
       <div className="w-full sticky top-0 z-[100] ">
@@ -151,15 +157,15 @@ export const Info = () => {
                     <div className="w-full overflow-x-scroll">
                       <div className=" p-2 flex flex-row text-black  gap-x-4  w-[120%] ">
                         <button className="rounded-full shadow-lg outline outline-black outline-1 ">
-                          <div className="mx-3 blackspace-nowarp">吃谎的人</div>
+                          <div className="mx-3 whitespace-nowarp">吃谎的人</div>
                         </button>
                         <button className="rounded-full  shadow-lg outline outline-black outline-1">
-                          <div className="mx-3 blackspace-nowarp">
+                          <div className="mx-3 whitespace-nowarp">
                             深水之窗3
                           </div>
                         </button>
                         <button className="rounded-full  shadow-lg outline outline-black outline-1">
-                          <div className="mx-3 blackspace-nowarp">明天的船</div>
+                          <div className="mx-3 whitespace-nowarp">明天的船</div>
                         </button>
                       </div>
                     </div>
@@ -178,7 +184,7 @@ export const Info = () => {
           )}
         </div>
 
-        <div className="relative bg-gradient-to-b from-50% to-100% from-[#390F0F] to-black py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky  h-[52px] shadow-md shadow-b flex flex-row justify-between">
+        <div className="relative bg-gradient-to-b from-50% to-100% from-[#390F0F] to-bblack py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky  h-[52px] shadow-md shadow-b flex flex-row justify-between">
           <div
             className="absolute bg-neutral-200  rounded-xl z-[-1] transition-all ease-in-out duration-300"
             id="indicator"
@@ -231,7 +237,7 @@ export const Info = () => {
       )}
       <div className="pt-4 w-full h-full ">
         <Swiper
-          style={{ background: "black", width: "100%", height: "100%" }}
+          style={{ background: "#303030", width: "100%", height: "100%" }}
           indicator={() => null}
           ref={swiperRef}
           defaultIndex={selected}
@@ -503,18 +509,18 @@ const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
 Sponsor.displayName = "Sponsor";
 const TagManage = () => {
   return (
-    <div className="bg-black w-ful">
-      <Collapse defaultActiveKey={["1"]} style={{ padding: "4px 16px" }}>
+    <div className="bg-bblack w-ful">
+      <Collapse defaultActiveKey={["0", "1"]} style={{ padding: "4px 16px" }}>
         <Collapse.Panel
-          key="1"
+          key="0"
           arrow={<Down className="w-8 h-8 text-white" />}
           title={
             <div className="text-[20px] font-title py-2 pl-1">订阅列表</div>
           }
-          className="bg-black"
+          className="bg-bblack"
         >
           {subList.map((item, index) => (
-            <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
+            <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}
                 arrow={(active) =>
@@ -547,15 +553,15 @@ const TagManage = () => {
           ))}
         </Collapse.Panel>
         <Collapse.Panel
-          key="2"
+          key="1"
           arrow={<Down className="w-8 h-8 text-white" />}
           title={
             <div className="text-[20px] font-title py-2 pl-1">屏蔽列表</div>
           }
-          style={{ background: "black", color: "white" }}
+          style={{ background: "#303030", color: "white" }}
         >
           {blockList.map((item, index) => (
-            <Collapse key={`subscribe${index}`} defaultActiveKey={["0"]}>
+            <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}
                 arrow={(active) =>

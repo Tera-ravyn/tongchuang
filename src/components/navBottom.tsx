@@ -32,11 +32,12 @@ const Nav = ({ color, textColor }: { color: string; textColor: string }) => {
     {
       key: `/${type}`,
       title: "个人首页",
-      icon: pathname.includes(`homepage`) ? (
-        <Home className={`w-6 h-6 ${textColor}`} />
-      ) : (
-        <HomeOutline className={`w-6 h-6 ${textColor}`} />
-      ),
+      icon:
+        pathname.split("/").length === 2 ? (
+          <Home className={`w-6 h-6 ${textColor}`} />
+        ) : (
+          <HomeOutline className={`w-6 h-6 ${textColor}`} />
+        ),
     },
     {
       key: `/${type}/chat`,
@@ -78,7 +79,6 @@ const Nav = ({ color, textColor }: { color: string; textColor: string }) => {
   useMount(() => {
     const cur = pathname.split("/")[1];
     if (cur !== type) setType(cur);
-    console.log(cur);
   });
 
   return (
