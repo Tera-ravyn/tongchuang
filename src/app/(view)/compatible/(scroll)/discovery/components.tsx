@@ -100,7 +100,10 @@ export const SearchPage = ({
                       width={25}
                       height={25}
                       alt=""
-                      src={item.userIcon}
+                      src={
+                        "https://image.baidu.com/search/down?url=" +
+                        item.userIcon
+                      }
                       className="rounded-full"
                     />
                     <div>{item.user}</div>
@@ -127,7 +130,10 @@ export const SearchPage = ({
                         <div className="overflow-hidden relative w-[110px] h-[110px]  ">
                           <Image
                             style={{ objectFit: "cover" }}
-                            src={item.cover}
+                            src={
+                              "https://image.baidu.com/search/down?url=" +
+                              item.cover
+                            }
                             fill={true}
                             sizes="100vw"
                             alt=""
@@ -177,7 +183,7 @@ export const Detail = ({ item }: { item: pieceType }) => {
             width={36}
             height={36}
             alt=""
-            src={item.userIcon}
+            src={"https://image.baidu.com/search/down?url=" + item.userIcon}
             className="rounded-full"
           />
           <div className="flex flex-col items-start">
@@ -193,7 +199,7 @@ export const Detail = ({ item }: { item: pieceType }) => {
         <div className="relative w-full pb-[80%]">
           <Image
             onClick={() => setLargeImg(item.cover)}
-            src={item.cover}
+            src={"https://image.baidu.com/search/down?url=" + item.cover}
             alt={item.title}
             layout="fill"
             objectFit="contain"
@@ -264,7 +270,9 @@ export const Detail = ({ item }: { item: pieceType }) => {
                 width={24}
                 height={24}
                 alt=""
-                src={comment.userIcon}
+                src={
+                  "https://image.baidu.com/search/down?url=" + comment.userIcon
+                }
                 className="rounded-full"
               />
               <div className="flex flex-col items-start">

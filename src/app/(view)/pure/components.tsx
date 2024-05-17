@@ -293,7 +293,7 @@ const PieceItem = ({ item }: { item: piece }) => {
     <div className="bg-neutral-200 w-full rounded-2xl px-8  py-3 flex flex-col items-center">
       {/* <div className="w-[90%]"> */}
       <Image
-        src={item.cover}
+        src={"https://image.baidu.com/search/down?url=" + item.cover}
         alt="image"
         style={{
           objectFit: "cover",
@@ -382,7 +382,7 @@ const SeriesItem = ({ item }: { item: collection }) => {
         <div className="overflow-hidden relative w-[110px] h-[110px]  ">
           <Image
             style={{ objectFit: "cover" }}
-            src={item.cover}
+            src={"https://image.baidu.com/search/down?url=" + item.cover}
             // width={97}
             // height={97}
             fill={true}
@@ -464,7 +464,7 @@ const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
                 setLargeImg(item);
               }}
               style={{ objectFit: "cover" }}
-              src={item}
+              src={"https://image.baidu.com/search/down?url=" + item}
               fill={true}
               // sizes="100vw"
               alt=""

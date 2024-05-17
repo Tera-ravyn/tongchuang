@@ -133,7 +133,7 @@ const Discovery = () => {
                   //   setLargeImg(item.cover);
                   // }}
                   style={{ objectFit: "cover" }}
-                  src={item.cover}
+                  src={"https://image.baidu.com/search/down?url=" + item.cover}
                   fill={true}
                   alt=""
                 />
