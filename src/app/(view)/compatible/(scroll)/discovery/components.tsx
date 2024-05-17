@@ -183,6 +183,7 @@ export const Detail = ({ item }: { item: pieceType }) => {
             width={36}
             height={36}
             alt=""
+            objectFit="cover"
             src={"https://image.baidu.com/search/down?url=" + item.userIcon}
             className="rounded-full"
           />
@@ -196,12 +197,14 @@ export const Detail = ({ item }: { item: pieceType }) => {
         <More className="w-8 h-8" />
       </div>
       {(item.cover ?? "") !== "" && (
-        <div className="relative w-full pb-[80%]">
+        <div className="relative w-full pb-2">
           <Image
             onClick={() => setLargeImg(item.cover)}
             src={"https://image.baidu.com/search/down?url=" + item.cover}
             alt={item.title}
-            layout="fill"
+            width={1000}
+            height={1000}
+            layout="responsive"
             objectFit="contain"
           />
         </div>

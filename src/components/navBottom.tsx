@@ -72,7 +72,7 @@ const Nav = ({ color, textColor }: { color: string; textColor: string }) => {
       icon: pathname.includes(`payFunc`) ? (
         <Pay className={`w-6 h-6 ${textColor}`} />
       ) : (
-        <PayOutline className={`w-6 h-6 ${textColor}`} />
+        <PayOutline className={`w-6 h-6 ${textColor} stroke-[1.3]`} />
       ),
     },
   ];

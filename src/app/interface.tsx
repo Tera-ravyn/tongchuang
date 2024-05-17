@@ -1,11 +1,6 @@
 import dayjs from "dayjs";
 import { StaticImageData } from "next/image";
 import { atom } from "recoil";
-export interface piece {
-  cover: StaticImageData;
-  time: dayjs.Dayjs;
-  description: string;
-}
 
 export interface collection {
   cover: StaticImageData;
@@ -40,9 +35,9 @@ export const generateDates = (count: number) => {
   return randomDates.sort((a, b) => b.diff(a)); // 降序排序，确保从最新到最旧
 };
 
-export const randomDates = () => {
-  const startDate = dayjs("2024-01-01");
-  const endDate = dayjs("2024-5-11");
+export const randomDates = (comment = true) => {
+  const startDate = dayjs(comment ? "2024-3-1" : "2024-1-1");
+  const endDate = dayjs(comment ? "2024-5-11" : "2024-2-29");
   const randomMilliseconds =
     Math.random() * endDate.diff(startDate, "milliseconds");
   const date = startDate.add(randomMilliseconds, "milliseconds");
@@ -71,4 +66,10 @@ export interface comment {
   userIcon: string | StaticImageData;
   context: string;
   date: dayjs.Dayjs;
+}
+
+export interface user {
+  userIcon: string;
+  user: string;
+  type: string;
 }

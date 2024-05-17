@@ -18,7 +18,7 @@ export default function RootLayout({
     } else
       setTimeout(() => {
         if (div) div.style.zIndex = "-1";
-      }, 500); // 300ms = 0.3s
+      }, 300);
   }, [largeImg]);
   return (
     <div className="w-full h-full bg-bblack overflow-y-hidden ">
@@ -28,7 +28,7 @@ export default function RootLayout({
       {/* {largeImg !== "" && ( */}
       <div
         id="viewLargeImg"
-        className={`w-full h-full z-[-1] fixed top-0  transition-all duration-1000 ease-in-out ${
+        className={`w-full h-full z-[-1] fixed top-0  transition-all duration-300 ease-in-out ${
           largeImg !== "" ? " bg-[rgba(0,0,0,0.85)] " : " "
         }`}
         onClick={() => {
@@ -37,7 +37,10 @@ export default function RootLayout({
       >
         {largeImg !== "" && (
           <Image
-            src={largeImg}
+            className={`transition duration-500 ease-in-out ${
+              largeImg !== "" ? "opacity-100" : "opacity-0"
+            }`}
+            src={"https://image.baidu.com/search/down?url=" + largeImg}
             alt=""
             style={{ objectFit: "contain" }}
             fill={true}

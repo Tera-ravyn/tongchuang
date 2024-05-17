@@ -29,7 +29,7 @@ import Favorites from "@/assets/icons/favorites.svg";
 import FavoritesOutline from "@/assets/icons/favorites-outline.svg";
 import Forward from "@/assets/icons/forward.svg";
 import dayjs, { Dayjs } from "dayjs";
-import { piece, collection, view } from "@/app/interface";
+import { pieceType, collection, view } from "@/app/interface";
 import Ufo from "@/assets/icons/ufo.svg";
 import More from "@/assets/icons/more.svg";
 import Down from "@/assets/icons/down.svg";
@@ -288,7 +288,7 @@ const Pieces = forwardRef<HTMLDivElement>((props, ref) => {
   );
 });
 Pieces.displayName = "Pieces";
-const PieceItem = ({ item }: { item: piece }) => {
+const PieceItem = ({ item }: { item: pieceType }) => {
   return (
     <div className="bg-neutral-200 w-full rounded-2xl px-8  py-3 flex flex-col items-center">
       {/* <div className="w-[90%]"> */}
@@ -305,23 +305,23 @@ const PieceItem = ({ item }: { item: piece }) => {
       <div className="grid grid-cols-[105px_1fr] gap-x-4 justify-flex-start w-full ">
         <div className="row-span-1  w-[105px] h-[85px] relative ">
           <div className="text-[26px] font-bold text-neutral-600 absolute left-0 top-0 z-[1]">
-            {item.time.year()}
+            {item.date.year()}
           </div>
           <div className="w-[85px] h-[65px] bg-neutral-300 rounded-2xl absolute right-0 bottom-0">
             <div className="flex flex-col text-[20px] font-bold text-neutral-600 items-end px-1 justify-center h-full ">
               <div>
-                <div className="">{`${item.time.format(
+                <div className="">{`${item.date.format(
                   "MM"
-                )}/${item.time.format("DD")}`}</div>
-                <div style={{ marginTop: "-10px" }}>{`${item.time.format(
+                )}/${item.date.format("DD")}`}</div>
+                <div style={{ marginTop: "-10px" }}>{`${item.date.format(
                   "HH"
-                )}:${item.time.format("ss")}`}</div>
+                )}:${item.date.format("ss")}`}</div>
               </div>
             </div>
           </div>
         </div>
         <div className="row-span-1 py-4 grid grid-rows-[1fr_10px] gap-y-4">
-          {item.description}
+          {item.context}
           <div className="flex flex-row gap-x-4 justify-around w-full">
             <InteractIcon
               normal={<Pawn className="w-6 h-6" />}

@@ -9,27 +9,68 @@ import dayjs from "dayjs";
 //个人主页作品列表
 export const PiecesList = [
   {
-    cover: avatar,
-    description: "不要再打游戏了好吗？好的。但打游戏是一种人生态度……",
-    time: dayjs("2024-04-13 21:29:10"),
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
   },
   {
-    cover: test,
-    description: "我爱吃饭，饭真好吃，真想一辈子吃饭。",
-    time: dayjs("2024-04-13 19:55:24"),
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
   },
-  {
-    cover: avatar,
-    description: "从前有座山，山里有座庙，庙里有个老和尚给小和尚讲故事",
-    time: dayjs("2024-02-18 00:03:35"),
-  },
-  {
-    cover: avatar,
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem in consequuntur similique dignissimos quaerat earum explicabo temporibus vitae nobis culpa enim, eaque ab voluptate quis aspernatur quod alias architecto? Incidunt!",
-    time: dayjs("2024-01-17 12:26:11"),
-  },
-];
+].sort((a, b) => b.date.diff(a.date));
 //标签订阅列表
 export const subList = [
   { ip: "IP名称", tags: ["tag1", "tag2", "tag3", "tag4", "tag5"] },
@@ -70,14 +111,115 @@ export const history = [
   "https://wx1.sinaimg.cn/orj360/006bPIrHly1hk6mch2u14j31ac1uc1l0.jpg",
 ];
 
-/*---------广场相关---------*/
-//广场作品浏览列表
-export const discovery = [
+/*---------版聊相关---------*/
+export const tags = [
+  "tag11111",
+  "tag22",
+  "tag3",
+  "tag4",
+  "tag5",
+  "tag66666666",
+];
+export const chat = [
   {
     title: "标题",
     cover:
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
-    date: randomDates(),
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/8324422c9fc99ddc/SHRJMUQ3VE0yMkkyRng1QjY2OS9LNlVFb21FUk83ODA5ajR6S2JLbEI0MD0.png?imageView&thumbnail=500x0&quality=96&stripmeta=0",
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+
+  {
+    title: "",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -107,7 +249,7 @@ export const discovery = [
   {
     title: "标题",
     cover: "",
-    date: randomDates(),
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -138,7 +280,7 @@ export const discovery = [
     title: "标题",
     cover:
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
-    date: randomDates(),
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -169,7 +311,73 @@ export const discovery = [
     title: "标题",
     cover:
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
-    date: randomDates(),
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+];
+
+/*---------广场相关---------*/
+//广场作品浏览列表
+export const discovery = [
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover: "",
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -200,7 +408,7 @@ export const discovery = [
     title: "标题",
     cover:
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
-    date: randomDates(),
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -231,7 +439,7 @@ export const discovery = [
     title: "标题",
     cover:
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
-    date: randomDates(),
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -262,7 +470,69 @@ export const discovery = [
     title: "标题",
     cover:
       "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
-    date: randomDates(),
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    ip: "ip",
+    tags: ["tag1", "tag2"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+  },
+  {
+    title: "标题",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    date: randomDates(false),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
     user: "用户昵称",
@@ -330,7 +600,7 @@ export const project = [
     //正文
     context:
       "<p>主题IP：XXX漫画<br />主办方：X0社团/个人<br />企划形式：线上24h展览/线下会展/讨论某话会<br />企划介绍：求求你&hellip;</p>",
-    date: randomDates(),
+    date: randomDates(false),
     class: "project",
   },
   {
@@ -347,7 +617,7 @@ export const project = [
     fav: Math.floor(Math.random() * 500),
     share: Math.floor(Math.random() * 500),
     context: "<p>这是一个咕咕咕的企划</p>",
-    date: randomDates(),
+    date: randomDates(false),
     class: "project",
   },
   {
@@ -364,9 +634,279 @@ export const project = [
     share: Math.floor(Math.random() * 500),
     context:
       "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
-    date: randomDates(),
+    date: randomDates(false),
     class: "project",
   },
 ].sort((a, b) => b.date.diff(a.date));
 //历史搜索记录
 export const searchHistory = ["词条1", "词条2", "词条3"];
+
+/*---------订阅相关---------*/
+//好友列表
+export const friends = [
+  {
+    group: "新的朋友",
+    users: [
+      {
+        userIcon: "",
+        user: "用户1",
+        motto: "狂暴同人女",
+        type: "compatible",
+      },
+      {
+        userIcon: "",
+        user: "用户2",
+        motto: "",
+        type: "pure",
+      },
+    ],
+  },
+  {
+    group: "分组1",
+    users: [
+      {
+        userIcon: "",
+        user: "用户1",
+        motto: "狂暴同人女",
+        type: "compatible",
+      },
+      {
+        userIcon: "",
+        user: "用户2",
+        motto: "",
+        type: "pure",
+      },
+    ],
+  },
+  {
+    group: "分组2",
+    users: [
+      {
+        userIcon: "",
+        user: "用户1",
+        motto: "狂暴同人女",
+        type: "compatible",
+      },
+      {
+        userIcon: "",
+        user: "用户2",
+        motto: "狂暴同人女",
+        type: "pure",
+      },
+    ],
+  },
+  {
+    group: "分组3",
+    users: [
+      {
+        userIcon: "",
+        user: "用户1",
+        motto: "狂暴同人女",
+        type: "compatible",
+      },
+      {
+        userIcon: "",
+        user: "用户2",
+        motto: "狂暴同人女",
+        type: "pure",
+      },
+    ],
+  },
+];
+//订阅用户
+export const subscribeUser = [
+  {
+    //发布人id
+    user: "用户昵称",
+    //发布人头像
+    userIcon: avatar,
+    //用户属性，pure-单推，compatible-兼容
+    type: "pure",
+    //企划标题
+    title: "企划1",
+    //企划封面
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    //企划ip
+    ip: "tag1",
+    //其他tag
+    tags: ["tag1", "tag2", "tag3"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    //评论
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+    //正文
+    context:
+      "<p>主题IP：XXX漫画<br />主办方：X0社团/个人<br />企划形式：线上24h展览/线下会展/讨论某话会<br />企划介绍：求求你&hellip;</p>",
+    date: randomDates(false),
+    class: "project",
+  },
+  {
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    title: "企划2",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    ip: "tag1",
+    tags: ["tag1", "tag2", "tag3"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    context: "<p>这是一个咕咕咕的企划</p>",
+    date: randomDates(false),
+    class: "project",
+  },
+  {
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    title: "企划3",
+    cover: "",
+    ip: "tag1",
+    tags: ["tag1", "tag2", "tag3"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    date: randomDates(false),
+    class: "project",
+  },
+].sort((a, b) => b.date.diff(a.date));
+//订阅ip
+export const subscribeIp = [
+  {
+    //发布人id
+    user: "用户昵称",
+    //发布人头像
+    userIcon: avatar,
+    //用户属性，pure-单推，compatible-兼容
+    type: "pure",
+    //企划标题
+    title: "企划1",
+    //企划封面
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    //企划ip
+    ip: "tag1",
+    //其他tag
+    tags: ["tag1", "tag2", "tag3"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    //评论
+    comments: [
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+      {
+        user: "用户昵称",
+        userIcon: avatar,
+        context: "草",
+        date: randomDates(),
+      },
+    ].sort((a, b) => b.date.diff(a.date)),
+    //正文
+    context:
+      "<p>主题IP：XXX漫画<br />主办方：X0社团/个人<br />企划形式：线上24h展览/线下会展/讨论某话会<br />企划介绍：求求你&hellip;</p>",
+    date: randomDates(false),
+    class: "project",
+  },
+  {
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    title: "企划2",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    ip: "tag1",
+    tags: ["tag1", "tag2", "tag3"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    context: "<p>这是一个咕咕咕的企划</p>",
+    date: randomDates(false),
+    class: "project",
+  },
+  {
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    title: "企划3",
+    cover: "",
+    ip: "tag1",
+    tags: ["tag1", "tag2", "tag3"],
+    pawn: Math.floor(Math.random() * 500),
+    crown: Math.floor(Math.random() * 500),
+    fav: Math.floor(Math.random() * 500),
+    share: Math.floor(Math.random() * 500),
+    context:
+      "<div><div>&nbsp; &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem reiciendis praesentium tempore molestiae harum, error veritatis quo, sed rem accusantium, ipsa exercitationem tempora saepe animi minus corrupti dolore sequi corporis.</div><div><div><div>&nbsp; &nbsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa inventore commodi atque libero distinctio est culpa rem quod iusto modi, nobis dolores quidem illum nemo sit nisi illo sapiente dicta!</div></div></div></div>",
+    date: randomDates(false),
+    class: "project",
+  },
+].sort((a, b) => b.date.diff(a.date));
+export const sponsor = [
+  {
+    //发布人id
+    user: "用户昵称",
+    //发布人头像
+    userIcon: avatar,
+    //用户属性，pure-单推，compatible-兼容
+    type: "pure",
+    //企划标题
+    title: "企划1",
+    //企划封面
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    //企划ip
+    ip: "tag1",
+    //其他tag
+    tags: ["tag1", "tag2", "tag3"],
+    date: randomDates(false),
+  },
+  {
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    title: "企划2",
+    cover:
+      "https://imglf5.lf127.net/img/2eec59d6dc55fdfb/UmtjYTNiMEFNUlhuNjBoeVdUZDBHY2t6UWRFSUFEdk4rakZnaldab0NlYz0.png?imageView&thumbnail=1000x0&type=png",
+    ip: "tag1",
+    tags: ["tag1", "tag2", "tag3"],
+    date: randomDates(false),
+  },
+  {
+    user: "用户昵称",
+    userIcon: avatar,
+    type: "pure",
+    title: "企划3",
+    cover: "",
+    ip: "tag1",
+    tags: ["tag1", "tag2", "tag3"],
+    date: randomDates(false),
+  },
+];
