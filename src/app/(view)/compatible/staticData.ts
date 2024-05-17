@@ -63,11 +63,11 @@ export const series = [
 ];
 //点图历史的图片地址
 export const history = [
-  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
-  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
-  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
-  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
-  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
+  "https://wx1.sinaimg.cn/orj360/006bPIrHly1hk6mch2u14j31ac1uc1l0.jpg",
+  "https://wx1.sinaimg.cn/orj360/006bPIrHly1hk6mch2u14j31ac1uc1l0.jpg",
+  "https://wx1.sinaimg.cn/orj360/006bPIrHly1hk6mch2u14j31ac1uc1l0.jpg",
+  "https://wx1.sinaimg.cn/orj360/006bPIrHly1hk6mch2u14j31ac1uc1l0.jpg",
+  "https://wx1.sinaimg.cn/orj360/006bPIrHly1hk6mch2u14j31ac1uc1l0.jpg",
 ];
 
 /*---------广场相关---------*/

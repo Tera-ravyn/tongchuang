@@ -24,7 +24,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "m.qpic.cn",
+        hostname: "wx1.sinaimg.cn",
       },
     ],
   },
