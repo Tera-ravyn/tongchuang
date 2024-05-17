@@ -22,6 +22,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "imglf6.lf127.net",
       },
+      {
+        protocol: "https",
+        hostname: "m.qpic.cn",
+      },
     ],
   },
 };
