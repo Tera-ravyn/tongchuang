@@ -63,11 +63,11 @@ export const series = [
 ];
 //点图历史的图片地址
 export const history = [
-  "https://imglf4.lf127.net/img/5ebc8be8eb7635bb/R3VzUnZPSGczSUFHRXZPZVRlZFJuTlBnWUU4SEdkaCtLbm1SdVp3a21IUT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0",
-  "https://imglf4.lf127.net/img/5ebc8be8eb7635bb/R3VzUnZPSGczSUFHRXZPZVRlZFJuTlBnWUU4SEdkaCtLbm1SdVp3a21IUT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0",
-  "https://imglf4.lf127.net/img/5ebc8be8eb7635bb/R3VzUnZPSGczSUFHRXZPZVRlZFJuTlBnWUU4SEdkaCtLbm1SdVp3a21IUT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0",
-  "https://imglf4.lf127.net/img/5ebc8be8eb7635bb/R3VzUnZPSGczSUFHRXZPZVRlZFJuTlBnWUU4SEdkaCtLbm1SdVp3a21IUT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0",
-  "https://imglf4.lf127.net/img/5ebc8be8eb7635bb/R3VzUnZPSGczSUFHRXZPZVRlZFJuTlBnWUU4SEdkaCtLbm1SdVp3a21IUT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0",
+  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
+  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
+  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
+  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
+  "https://m.qpic.cn/psc?/V540G2XK2NvuIf2mCCsH1NvPPH4Nq2pJ/ruAMsa53pVQWN7FLK88i5j6tkz36O8wBZlzpDnBkD4AKYz0eFhmSu0PgTvrxqklnBhXApbxw10Lp6WR5QZj9T32QQsjJ0O2ORXIOo.RQJKA!/mnull&bo=nQTsBp0E7AYDCSw!&rf=photolist&t=5",
 ];
 
 /*---------广场相关---------*/
