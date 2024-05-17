@@ -480,7 +480,7 @@ const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
                 setLargeImg(item);
               }}
               style={{ objectFit: "cover" }}
-              src={item}
+              src={"https://image.baidu.com/search/down?url=" + item}
               fill={true}
               // sizes="100vw"
               alt=""

@@ -24,7 +24,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "wx1.sinaimg.cn",
+        hostname: "image.baidu.com",
       },
     ],
   },
