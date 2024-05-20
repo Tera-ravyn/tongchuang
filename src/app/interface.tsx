@@ -3,12 +3,13 @@ import { StaticImageData } from "next/image";
 import { atom } from "recoil";
 
 export interface collection {
-  cover: StaticImageData;
+  cover: string;
   title: string;
   description: string;
   type: string;
-  tag: string;
+  ip: string;
   tags: string[];
+  pieces: pieceType[];
 }
 
 export const mode = atom<string>({

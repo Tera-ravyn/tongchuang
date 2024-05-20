@@ -11,7 +11,9 @@ import {
   Toast,
 } from "antd-mobile";
 import {
+  createContext,
   forwardRef,
+  useContext,
   useEffect,
   useLayoutEffect,
   useRef,
@@ -37,9 +39,13 @@ import Hide from "@/assets/icons/hide.svg";
 import { PiecesList, blockList, history, series, subList } from "./staticData";
 import { useRecoilState } from "recoil";
 import { CustomPopup } from "../CustomPopup";
-
+import { useRouter } from "next/navigation";
+import { useMount } from "ahooks";
+const dataContext = createContext<any[]>([]);
 export const Info = () => {
+  const router = useRouter();
   const [refresh, setRefresh] = useState(false);
+  const [data, setData] = useState<any[]>([]);
   const swiperRef = useRef<SwiperRef>(null);
   const piecesRef = useRef<any>(null);
   const seriesRef = useRef<any>(null);
@@ -95,164 +101,175 @@ export const Info = () => {
       indicator.style.top = `${item.offsetHeight - rect.height / 2 - 2}px`;
     }
   }, [selected]);
-
+  useMount(() => {
+    setData([PiecesList, series, history, blockList, subList]);
+  });
   return (
     <div className="relative w-full h-full">
-      <CustomPopup
-        state={panel}
-        setState={setPanel}
-        type="pure"
-        title="标签管理"
-        noShadow
-      >
-        <TagManage />
-      </CustomPopup>
-      <div className="w-full sticky top-0 z-[100] ">
-        <div
-          onClick={() => {
-            setHeight(true);
-          }}
-          className={`m-auto flex flex-col items-center justify-evenly w-full bg-bblack rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
-            height ? "h-[212px]" : "h-[83px]"
-          }`}
+      <dataContext.Provider value={data}>
+        <CustomPopup
+          state={panel}
+          setState={setPanel}
+          type="pure"
+          title="标签管理"
+          noShadow
         >
-          <div className="w-full px-4 flex justify-between items-center text-white ">
-            <div className="flex justify-start items-center gap-x-3 w-full">
-              <Image
-                width={height ? 80 : 40}
-                height={height ? 80 : 40}
-                alt=""
-                src={avatar}
-                className="rounded-full transition-all ease-in-out duration-300"
-              />
-              <div className="  m-auto w-full  ">
-                <div className="font-title  p-2 text-[20px] flex flex-row items-center w-full justify-between">
-                  <div
-                    className={`flex gap-2 items-center ${
-                      height ? "text-white" : "text-gray"
-                    }`}
-                  >
-                    狗尾巴草
-                    {height && (
-                      <div className="rounded-full bg-pure w-3 h-3"></div>
-                    )}
+          <TagManage />
+        </CustomPopup>
+        <div className="w-full sticky top-0 z-[100] ">
+          <div
+            onClick={() => {
+              setHeight(true);
+            }}
+            className={`m-auto flex flex-col items-center justify-evenly w-full bg-bblack rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 ${
+              height ? "h-[212px]" : "h-[83px]"
+            }`}
+          >
+            <div className="w-full px-4 flex justify-between items-center text-white ">
+              <div className="flex justify-start items-center gap-x-3 w-full">
+                <Image
+                  width={height ? 80 : 40}
+                  height={height ? 80 : 40}
+                  alt=""
+                  src={avatar}
+                  className="rounded-full transition-all ease-in-out duration-300"
+                />
+                <div className="  m-auto w-full  ">
+                  <div className="font-title  p-2 text-[20px] flex flex-row items-center w-full justify-between">
+                    <div
+                      className={`flex gap-2 items-center ${
+                        height ? "text-white" : "text-gray"
+                      }`}
+                    >
+                      狗尾巴草
+                      {height && (
+                        <div
+                          onClick={() => router.push("modeSelect")}
+                          className="rounded-full bg-pure w-3 h-3"
+                        ></div>
+                      )}
+                    </div>
+                    <Refresh
+                      className="text-white"
+                      onClick={() => handleRefresh()}
+                    />
                   </div>
-                  <Refresh
-                    className="text-white"
-                    onClick={() => handleRefresh()}
-                  />
-                </div>
-                {height && (
-                  <div
-                    className="w-full relative"
-                    onClick={() => {
-                      setPanel(true);
-                    }}
-                  >
-                    <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-black absolute "></div>
-                    <div className=" left-full h-10 w-10 top-0 bg-bblack absolute "></div>
-                    <div className="w-full overflow-x-scroll">
-                      <div className=" p-2 flex flex-row text-white  gap-x-4  w-auto w-[160%]">
-                        <button className="rounded-full outline outline-white outline-1 whitespace-nowarp">
-                          <div className="mx-3 whitespace-nowarp">吃谎的人</div>
-                        </button>
-                        <button className="rounded-full outline outline-white outline-1">
-                          <div className="mx-3 whitespace-nowarp">
-                            我有超能力
-                          </div>
-                        </button>
-                        <button className="rounded-full outline outline-white outline-1">
-                          <div className="mx-3 whitespace-nowarp">纷争前线</div>
-                        </button>
+                  {height && (
+                    <div
+                      className="w-full relative"
+                      onClick={() => {
+                        setPanel(true);
+                      }}
+                    >
+                      <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-black absolute "></div>
+                      <div className=" left-full h-10 w-10 top-0 bg-bblack absolute "></div>
+                      <div className="w-full overflow-x-scroll">
+                        <div className=" p-2 flex flex-row text-white  gap-x-4  w-auto w-[160%]">
+                          <button className="rounded-full outline outline-white outline-1 whitespace-nowarp">
+                            <div className="mx-3 whitespace-nowarp">
+                              吃谎的人
+                            </div>
+                          </button>
+                          <button className="rounded-full outline outline-white outline-1">
+                            <div className="mx-3 whitespace-nowarp">
+                              我有超能力
+                            </div>
+                          </button>
+                          <button className="rounded-full outline outline-white outline-1">
+                            <div className="mx-3 whitespace-nowarp">
+                              纷争前线
+                            </div>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
+            {height && (
+              <div className="px-12 flex flex-row text-white text-[16px] gap-x-4 font-title w-full justify-around">
+                <div>订阅</div>
+                <div>好友</div>
+                <div>收藏</div>
+                <div>推荐</div>
+              </div>
+            )}
           </div>
-          {height && (
-            <div className="px-12 flex flex-row text-white text-[16px] gap-x-4 font-title w-full justify-around">
-              <div>订阅</div>
-              <div>好友</div>
-              <div>收藏</div>
-              <div>推荐</div>
-            </div>
-          )}
-        </div>
 
-        <div className="relative bg-white py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky top-0 h-[52px] shadow-md shadow-b flex flex-row justify-between">
-          <div
-            className="absolute bg-[#323232]  rounded-xl z-[-1] transition-all ease-in-out duration-300"
-            id="indicator"
-          ></div>
-          <button
-            onClick={() => {
-              setSelected(0);
-              swiperRef.current?.swipeTo(0);
-            }}
-            name="tabbar"
-            className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 bg-[#323232]${
-              selected === 0 ? " text-white" : " text-darkgray"
-            }`}
-          >
-            作品列表
-          </button>
-          <button
-            name="tabbar"
-            onClick={() => {
-              setSelected(1);
-              swiperRef.current?.swipeTo(1);
-            }}
-            className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 ${
-              selected === 1 ? " text-white" : " text-darkgray"
-            }`}
-          >
-            系列合集
-          </button>
-          <button
-            name="tabbar"
-            onClick={() => {
-              setSelected(2);
-              swiperRef.current?.swipeTo(2);
-            }}
-            className={`rounded-xl px-4 font-title  transition-all ease-in-out duration-300 ${
-              selected === 2 ? " text-white" : " text-darkgray"
-            }`}
-          >
-            赞助点图
-          </button>
+          <div className="relative bg-white py-3 px-5 text-[16px] w-full transition-all ease-in-out duration-300 sticky top-0 h-[52px] shadow-md shadow-b flex flex-row justify-between">
+            <div
+              className="absolute bg-[#323232]  rounded-xl z-[-1] transition-all ease-in-out duration-300"
+              id="indicator"
+            ></div>
+            <button
+              onClick={() => {
+                setSelected(0);
+                swiperRef.current?.swipeTo(0);
+              }}
+              name="tabbar"
+              className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 bg-[#323232]${
+                selected === 0 ? " text-white" : " text-darkgray"
+              }`}
+            >
+              作品列表
+            </button>
+            <button
+              name="tabbar"
+              onClick={() => {
+                setSelected(1);
+                swiperRef.current?.swipeTo(1);
+              }}
+              className={`rounded-xl px-4 font-title transition-all ease-in-out duration-300 ${
+                selected === 1 ? " text-white" : " text-darkgray"
+              }`}
+            >
+              系列合集
+            </button>
+            <button
+              name="tabbar"
+              onClick={() => {
+                setSelected(2);
+                swiperRef.current?.swipeTo(2);
+              }}
+              className={`rounded-xl px-4 font-title  transition-all ease-in-out duration-300 ${
+                selected === 2 ? " text-white" : " text-darkgray"
+              }`}
+            >
+              赞助点图
+            </button>
+          </div>
         </div>
-      </div>
-      {refresh && (
-        <div className=" text-black w-full pt-4 flex justify-center">
-          <SpinLoading
-            color="white"
-            style={{ "--size": "64px", margin: "auto", "--color": "black" }}
-          />
+        {refresh && (
+          <div className=" text-black w-full pt-4 flex justify-center">
+            <SpinLoading
+              color="white"
+              style={{ "--size": "64px", margin: "auto", "--color": "black" }}
+            />
+          </div>
+        )}
+        <div className="pt-4 w-full h-full">
+          <Swiper
+            indicator={() => null}
+            ref={swiperRef}
+            defaultIndex={selected}
+            onIndexChange={(index) => {
+              setSelected(index);
+            }}
+            style={{ width: "100%", height: "100%" }}
+          >
+            <Swiper.Item className=" w-full h-full">
+              <Pieces ref={piecesRef} />
+            </Swiper.Item>
+            <Swiper.Item className=" w-full h-full">
+              <Series ref={seriesRef} />
+            </Swiper.Item>
+            <Swiper.Item className=" w-full h-full">
+              <Sponsor ref={sponsorRef} />
+            </Swiper.Item>
+          </Swiper>
         </div>
-      )}
-      <div className="pt-4 w-full h-full">
-        <Swiper
-          indicator={() => null}
-          ref={swiperRef}
-          defaultIndex={selected}
-          onIndexChange={(index) => {
-            setSelected(index);
-          }}
-          style={{ width: "100%", height: "100%" }}
-        >
-          <Swiper.Item className=" w-full h-full">
-            <Pieces ref={piecesRef} />
-          </Swiper.Item>
-          <Swiper.Item className=" w-full h-full">
-            <Series ref={seriesRef} />
-          </Swiper.Item>
-          <Swiper.Item className=" w-full h-full">
-            <Sponsor ref={sponsorRef} />
-          </Swiper.Item>
-        </Swiper>
-      </div>
+      </dataContext.Provider>
     </div>
   );
 };
@@ -260,13 +277,13 @@ export const Info = () => {
 //作品合集
 const Pieces = forwardRef<HTMLDivElement>((props, ref) => {
   const [hasMore, setHasMore] = useState(true);
-
+  const data = useContext(dataContext);
   return (
     <div
       ref={ref}
       className="w-full h-full overflow-y-auto pb-[169px] flex flex-col justify-between items-center gap-y-6"
     >
-      {PiecesList.map((item, index) => (
+      {(data[0] as pieceType[])?.map((item, index) => (
         <PieceItem item={item} key={`pieces${index}`} />
       ))}
       <InfiniteScroll
@@ -292,15 +309,20 @@ const PieceItem = ({ item }: { item: pieceType }) => {
   return (
     <div className="bg-neutral-200 w-full rounded-2xl px-8  py-3 flex flex-col items-center">
       {/* <div className="w-[90%]"> */}
-      <Image
-        src={"https://image.baidu.com/search/down?url=" + item.cover}
-        alt="image"
-        style={{
-          objectFit: "cover",
-          maxWidth: "100%",
-          boxShadow: "0 0 16px rgba(0, 0, 0, 0.15)",
-        }}
-      />
+      {item.cover && (
+        <Image
+          src={"https://image.baidu.com/search/down?url=" + item.cover}
+          alt="image"
+          // fill={true}
+          width={360}
+          height={360}
+          layout="responsive"
+          objectFit="cover"
+          style={{
+            boxShadow: "0 0 16px rgba(0, 0, 0, 0.15)",
+          }}
+        />
+      )}
       {/* </div> */}
       <div className="grid grid-cols-[105px_1fr] gap-x-4 justify-flex-start w-full ">
         <div className="row-span-1  w-[105px] h-[85px] relative ">
@@ -321,7 +343,7 @@ const PieceItem = ({ item }: { item: pieceType }) => {
           </div>
         </div>
         <div className="row-span-1 py-4 grid grid-rows-[1fr_10px] gap-y-4">
-          {item.context}
+          <div dangerouslySetInnerHTML={{ __html: item.context }} />
           <div className="flex flex-row gap-x-4 justify-around w-full">
             <InteractIcon
               normal={<Pawn className="w-6 h-6" />}
@@ -363,12 +385,13 @@ const InteractIcon = ({
 };
 //系列合集
 const Series = forwardRef<HTMLDivElement>((props, ref) => {
+  const data = useContext(dataContext);
   return (
     <div
       ref={ref}
       className="w-full h-full overflow-y-auto pb-[169px] flex flex-col gap-y-6 px-4"
     >
-      {series.map((item, index) => (
+      {(data[1] as collection[])?.map((item, index) => (
         <SeriesItem item={item} key={`collection${index}`}></SeriesItem>
       ))}
     </div>
@@ -396,7 +419,7 @@ const SeriesItem = ({ item }: { item: collection }) => {
           </div>
           <div className="flex flex-row gap-x-4 items-center">
             <button className="outline outline-1 rounded-full px-3 outline-black shadow-lg">
-              {item.tag}
+              {item.ip}
             </button>
             <div
               className={`w-4 h-4 rounded-full ${
@@ -423,6 +446,7 @@ const SeriesItem = ({ item }: { item: collection }) => {
 //赞助点图
 const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
   const [largeImg, setLargeImg] = useRecoilState(view);
+  const data = useContext(dataContext);
   return (
     <div ref={ref} className="w-full h-full overflow-y-auto pb-[169px] px-4">
       <div className="w-full bg-neutral-200 rounded-2xl py-4 flex flex-col gap-y-4">
@@ -454,7 +478,7 @@ const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
       </div>
       <div className="w-full h-[2px] bg-gray my-4"></div>
       <div className="grid grid-cols-3 w-full gap-4 ">
-        {history.map((item, index) => (
+        {(data[2] as typeof history)?.map((item, index) => (
           <div
             className="overflow-hidden relative w-full pb-[100%]  "
             key={item + index}
@@ -492,6 +516,7 @@ const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
 });
 Sponsor.displayName = "Sponsor";
 const TagManage = () => {
+  const data = useContext(dataContext);
   return (
     <div>
       <Collapse defaultActiveKey={["0", "1"]} style={{ padding: "4px 16px" }}>
@@ -502,7 +527,7 @@ const TagManage = () => {
             <div className="text-[20px] font-title py-2 pl-1">屏蔽列表</div>
           }
         >
-          {blockList.map((item, index) => (
+          {(data[3] as typeof blockList)?.map((item, index) => (
             <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}
@@ -542,7 +567,7 @@ const TagManage = () => {
             <div className="text-[20px] font-title py-2 pl-1">订阅列表</div>
           }
         >
-          {subList.map((item, index) => (
+          {(data[4] as typeof subList)?.map((item, index) => (
             <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}

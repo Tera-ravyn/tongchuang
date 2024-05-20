@@ -46,7 +46,7 @@ export const Friends = ({
               setSelect(select.filter((i) => i !== index));
             else setSelect((prev) => [...prev, index]);
           }}
-          key={`friend_index`}
+          key={`friend_${index}`}
           className={`transition-all duration-300 ease-in-out grid px-4 py-2 w-full ${
             select.includes(index)
               ? " bg-neutral-200 grid-rows-[0fr_1fr]"
@@ -57,7 +57,11 @@ export const Friends = ({
             <div className=" text-[16px] font-bold pl-3">{friend.group}</div>
             <div className=" text-[14px] flex flex-row text-darkgray items-center">
               全部
-              <BiChevronRight className="w-8 h-8" />
+              <BiChevronRight
+                className={`w-8 h-8 transition-all duration-300 ease-in-out ${
+                  select.includes(index) ? " rotate-90" : ""
+                }`}
+              />
             </div>
           </div>
           <div className="min-h-0 overflow-hidden flex flex-col gap-y-2">
@@ -70,9 +74,7 @@ export const Friends = ({
                 <div className="flex flex-row justify-start items-center gap-x-4 ">
                   <Image
                     className="rounded-full"
-                    src={
-                      "https://image.baidu.com/search/down?url=" + user.userIcon
-                    }
+                    src={user.userIcon}
                     alt={user.user}
                     width={38}
                     height={38}
@@ -112,7 +114,7 @@ export const SubscribeUser = ({
 }) => {
   const [data, setData] = useState<any[]>([]);
   useMount(() => {
-    setData(subscribeIp);
+    setData(subscribeUser);
   });
   return (
     <div className="w-full text-[15px] flex flex-col  bg-bblack items-center justify-start gap-y-5">
@@ -131,7 +133,11 @@ export const SubscribeUser = ({
                 width={25}
                 height={25}
                 alt=""
-                src={"https://image.baidu.com/search/down?url=" + item.userIcon}
+                src={
+                  typeof item.userIcon === "string"
+                    ? "https://image.baidu.com/search/down?url=" + item.userIcon
+                    : item.userIcon
+                }
                 className="rounded-full"
               />
               <div>{item.user}</div>
@@ -205,7 +211,7 @@ export const SubscribeIp = ({
 }) => {
   const [data, setData] = useState<any[]>([]);
   useMount(() => {
-    setData(subscribeUser);
+    setData(subscribeIp);
   });
   return (
     <div className="w-full text-[15px] flex flex-col  bg-bblack items-center justify-start gap-y-5">
@@ -224,7 +230,11 @@ export const SubscribeIp = ({
                 width={25}
                 height={25}
                 alt=""
-                src={"https://image.baidu.com/search/down?url=" + item.userIcon}
+                src={
+                  typeof item.userIcon === "string"
+                    ? "https://image.baidu.com/search/down?url=" + item.userIcon
+                    : item.userIcon
+                }
                 className="rounded-full"
               />
               <div>{item.user}</div>
@@ -313,7 +323,11 @@ export const Sponsor = ({
                 width={25}
                 height={25}
                 alt=""
-                src={"https://image.baidu.com/search/down?url=" + item.userIcon}
+                src={
+                  typeof item.userIcon === "string"
+                    ? "https://image.baidu.com/search/down?url=" + item.userIcon
+                    : item.userIcon
+                }
                 className="rounded-full"
               />
               <div>{item.user}</div>

@@ -58,7 +58,7 @@ export const CustomPopup = ({
       visible={state}
       bodyStyle={{
         width: "100vw",
-        background: type === "pure" ? "#D4D4D4" : "#303030",
+        background: type === "pure" ? "white" : "#303030",
         overflowY: "scroll",
       }}
     >
@@ -66,7 +66,12 @@ export const CustomPopup = ({
         <NavBar
           right={right}
           style={{
-            background: noShadow === (type === "pure") ? "#D4D4D4" : "#303030",
+            background:
+              noShadow === (type === "pure")
+                ? type === "pure"
+                  ? "white"
+                  : "#D4D4D4"
+                : "#303030",
             color: noShadow === (type === "pure") ? "black" : "white",
             width: "100%",
             height: "100%",

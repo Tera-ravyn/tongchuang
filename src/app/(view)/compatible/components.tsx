@@ -6,6 +6,7 @@ import {
   ImageUploader,
   InfiniteScroll,
   Modal,
+  Popup,
   SpinLoading,
   Swiper,
   SwiperRef,
@@ -24,7 +25,8 @@ import {
 import Refresh from "@/assets/icons/refresh.svg";
 import Image, { StaticImageData } from "next/image";
 import avatar from "@/assets/Image/avatar.jpg";
-import test from "@/assets/Image/test0.jpeg";
+import Tag from "@/assets/icons/tag.svg";
+import Clipboard from "@/assets/icons/clipboard.svg";
 import Pawn from "@/assets/icons/pawn.svg";
 import PawnOutline from "@/assets/icons/pawn-outline.svg";
 import Crown from "@/assets/icons/crown.svg";
@@ -42,10 +44,13 @@ import Hide from "@/assets/icons/hide.svg";
 import { PiecesList, blockList, history, series, subList } from "./staticData";
 import { useRecoilState } from "recoil";
 import { useMount } from "ahooks";
+import { useRouter } from "next/navigation";
+import { Detail } from "./(scroll)/discovery/components";
 
 const dataContext = createContext<any[]>([]);
 
 export const Info = () => {
+  const router = useRouter();
   const [data, setData] = useState<any[]>([]);
   const swiperRef = useRef<SwiperRef>(null);
   const piecesRef = useRef<any>(null);
@@ -107,7 +112,7 @@ export const Info = () => {
     }
   }, [selected]);
   useMount(() => {
-    setData([PiecesList, blockList, history, series, subList]);
+    setData([PiecesList, series, history, blockList, subList]);
   });
   return (
     <div className="relative w-full h-full">
@@ -147,9 +152,12 @@ export const Info = () => {
                         height ? " text-black" : " text-neutral-800"
                       }`}
                     >
-                      我要吃饭
+                      我爱吃饭
                       {height && (
-                        <div className="rounded-full bg-compatible w-3 h-3"></div>
+                        <div
+                          onClick={() => router.push("modeSelect")}
+                          className="rounded-full bg-compatible w-3 h-3"
+                        ></div>
                       )}
                     </div>
                     <Refresh onClick={() => handleRefresh()} />
@@ -289,14 +297,32 @@ const generateDates = (count: number) => {
 //作品合集
 const Pieces = forwardRef<HTMLDivElement>((props, ref) => {
   const [hasMore, setHasMore] = useState(true);
+  const [panel, setPanel] = useState(false);
+  const [item, setItem] = useState<pieceType>();
   const data = useContext(dataContext);
   return (
     <div
       ref={ref}
       className="pb-[169px] w-full h-full overflow-y-auto flex flex-col justify-between items-center gap-y-6"
     >
+      <CustomPopup
+        state={panel}
+        setState={setPanel}
+        title="作品详情"
+        type="compatible"
+      >
+        {item && <Detail item={item} />}
+      </CustomPopup>
       {(data[0] as pieceType[])?.map((item, index) => (
-        <PieceItem item={item} key={`pieces${index}`} />
+        <div
+          key={`pieces${index}`}
+          onClick={() => {
+            setItem(item);
+            setPanel(true);
+          }}
+        >
+          <PieceItem item={item} />
+        </div>
       ))}
       <InfiniteScroll
         hasMore={hasMore}
@@ -395,10 +421,29 @@ const InteractIcon = ({
 };
 //系列合集
 const Series = forwardRef<HTMLDivElement>((props, ref) => {
+  const data = useContext(dataContext);
+  const [panel, setPanel] = useState(false);
+  const [item, setItem] = useState<collection>();
   return (
     <div ref={ref} className="flex flex-col gap-y-6 px-4 pb-[169px]">
-      {series.map((item, index) => (
-        <SeriesItem item={item} key={`collection${index}`}></SeriesItem>
+      <Popup
+        position="right"
+        visible={panel}
+        onClose={() => setPanel(false)}
+        bodyStyle={{ height: "100vh" }}
+      >
+        {item && <SeriesDetail item={item} setState={setPanel} />}
+      </Popup>
+      {(data[1] as collection[])?.map((item, index) => (
+        <div
+          key={`collection${index}`}
+          onClick={() => {
+            setPanel(true);
+            setItem(item);
+          }}
+        >
+          <SeriesItem item={item}></SeriesItem>
+        </div>
       ))}
     </div>
   );
@@ -407,7 +452,7 @@ Series.displayName = "Series";
 const SeriesItem = ({ item }: { item: collection }) => {
   return (
     <div className="w-full bg-neutral-200 rounded-2xl ">
-      <div className="cursor-pointer grid grid-cols-[110px_1fr] gap-x-4 m-4 p-2 rounded-md items-center">
+      <div className="cursor-pointer grid grid-cols-[110px_1fr] gap-x-4 mx-4 p-2 rounded-md items-center">
         <div className="overflow-hidden relative w-[110px] h-[110px]  ">
           <Image
             style={{ objectFit: "cover" }}
@@ -425,7 +470,7 @@ const SeriesItem = ({ item }: { item: collection }) => {
           </div>
           <div className="flex flex-row gap-x-4 items-center">
             <button className="outline outline-1 rounded-full px-3 outline-black shadow-lg">
-              {item.tag}
+              {item.ip}
             </button>
             <div
               className={`w-4 h-4 rounded-full ${
@@ -449,6 +494,132 @@ const SeriesItem = ({ item }: { item: collection }) => {
     </div>
   );
 };
+const SeriesDetail = ({
+  item,
+  setState,
+}: {
+  item: collection;
+  setState: React.Dispatch<boolean>;
+}) => {
+  const [refresh, setRefresh] = useState(false);
+  const [pieces, setPieces] = useState<pieceType>();
+  const [panel, setPanel] = useState(false);
+  const handleRefresh = () => {
+    setRefresh(true);
+    setTimeout(() => {
+      setRefresh(false);
+    }, 3000);
+  };
+  return (
+    <div className="w-full h-full bg-bblack pb-[96px]">
+      <div className="w-full sticky top-0 z-[100] ">
+        <div className="m-auto flex flex-col items-center justify-evenly w-full bg-neutral-200 rounded-b-2xl shadow-lg transition-all ease-in-out duration-300 h-[212px]">
+          <div className="w-full px-4 flex justify-between items-center text-black ">
+            <div className="flex justify-start items-center gap-x-3 w-full">
+              <div className="overflow-hidden relative min-w-[110px] min-h-[110px] max-w-[110px] max-h-[110px] ">
+                <Image
+                  onClick={() => {
+                    setState(false);
+                  }}
+                  style={{ objectFit: "cover" }}
+                  src={"https://image.baidu.com/search/down?url=" + item.cover}
+                  // width={97}
+                  // height={97}
+                  fill={true}
+                  sizes="100vw"
+                  alt=""
+                />
+              </div>
+              <div className="  m-auto w-full  ">
+                <div className=" p-2  flex flex-row items-center w-full justify-between">
+                  <div className="flex flex-col gap-y-1">
+                    <div
+                      className={`font-title text-[20px] flex gap-2 items-center drop-shadow-lg text-black`}
+                    >
+                      {item.title}
+                      <div
+                        className={`rounded-full w-3 h-3 ${
+                          item.type === "pure" ? "bg-pure" : "bg-compatible"
+                        }`}
+                      ></div>
+                    </div>
+                    {item.description}
+                  </div>
+                  <Refresh onClick={() => handleRefresh()} />
+                </div>
+
+                <div className="w-full relative">
+                  <div className=" right-0 h-10 w-10 top-0 bg-gradient-to-r from-transparent to-neutral-200 absolute "></div>
+                  <div className=" left-full h-10 w-10 top-0 bg-neutral-200 absolute "></div>
+
+                  <div className="flex flex-col pl-1 justify-start items-start py-2 gap-y-2 text-[12px]">
+                    <div className="flex flex-row gap-x-2 items-end">
+                      <button className="outline outline-1 outline-black rounded-full px-3 text-[14px] ">
+                        {item.ip}
+                      </button>
+                    </div>
+                    <div className="flex flex-row gap-x-2 items-end">
+                      {item.tags.map((_, i) => (
+                        <button
+                          className=" outline outline-1 outline-black  rounded-full px-3"
+                          key={`tags${_}${i}`}
+                        >
+                          {_}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="px-12 flex flex-row text-black text-[16px] gap-x-4 font-title w-full justify-around">
+            <div className="flex flex-row gap-x-2 items-center">
+              <Tag />
+              订阅（666）
+            </div>
+            <div className="flex flex-row gap-x-2 items-center">
+              <Clipboard className="w-5 h-5" />
+              收藏（999）
+            </div>
+          </div>
+        </div>
+      </div>
+      {refresh && (
+        <div className=" text-white w-full pt-4 flex justify-center">
+          <SpinLoading
+            color="white"
+            style={{ "--size": "64px", margin: "auto" }}
+          />
+        </div>
+      )}
+      <div className="pt-6 w-full h-full">
+        <div className="pb-[169px] w-full h-full overflow-y-auto flex flex-col justify-between items-center gap-y-6">
+          <CustomPopup
+            state={panel}
+            setState={setPanel}
+            title="作品详情"
+            type="compatible"
+          >
+            {pieces && <Detail item={pieces} />}
+          </CustomPopup>
+          {item.pieces?.map((piece, index) => (
+            <div
+              key={`pieces${index}`}
+              onClick={() => {
+                setPieces(piece);
+                setPanel(true);
+              }}
+            >
+              <PieceItem item={piece} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 const upload = async (file: File) => {
   return {
     url: "",
@@ -457,12 +628,13 @@ const upload = async (file: File) => {
 //赞助点图
 const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
   const [largeImg, setLargeImg] = useRecoilState(view);
+  const data = useContext(dataContext);
   return (
     <div ref={ref} className="overflow-y-auto px-4 w-full h-full pb-[169px]">
       <div className="w-full bg-neutral-200 rounded-2xl py-4 flex flex-col gap-y-4">
         <div className=" flex flex-row px-6 ">
           向&nbsp;
-          <div className="font-title drop-shadow-lg ">我要吃饭</div>
+          <div className="font-title drop-shadow-lg ">我爱吃饭</div>
           &nbsp;发出赞助点图请求：
         </div>
         <div className="flex flex-col items-center gap-y-3">
@@ -488,7 +660,7 @@ const Sponsor = forwardRef<HTMLDivElement>((props, ref) => {
       </div>
       <div className="w-full h-[2px] bg-gray my-4"></div>
       <div className="grid grid-cols-3 w-full gap-4 ">
-        {history.map((item, index) => (
+        {(data[2] as typeof history)?.map((item, index) => (
           <div
             className="overflow-hidden relative w-full pb-[100%]  "
             key={item + index}
@@ -538,7 +710,7 @@ const TagManage = () => {
           }
           className="bg-bblack"
         >
-          {subList.map((item, index) => (
+          {(data[4] as typeof subList)?.map((item, index) => (
             <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}
@@ -579,7 +751,7 @@ const TagManage = () => {
           }
           style={{ background: "#303030", color: "white" }}
         >
-          {(data[1] as typeof blockList)?.map((item, index) => (
+          {(data[3] as typeof blockList)?.map((item, index) => (
             <Collapse key={`subscribe${index}`} defaultActiveKey={["0", "1"]}>
               <Collapse.Panel
                 key={String(index)}

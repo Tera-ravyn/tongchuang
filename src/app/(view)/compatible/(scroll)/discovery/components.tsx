@@ -101,11 +101,14 @@ export const SearchPage = ({
                       height={25}
                       alt=""
                       src={
-                        "https://image.baidu.com/search/down?url=" +
-                        item.userIcon
+                        typeof item.userIcon === "string"
+                          ? "https://image.baidu.com/search/down?url=" +
+                            item.userIcon
+                          : item.userIcon
                       }
                       className="rounded-full"
                     />
+
                     <div>{item.user}</div>
                     <div
                       className={`w-2 h-2 rounded-full ${
@@ -147,8 +150,8 @@ export const SearchPage = ({
                       ></div>
                     )}
                   </div>
-                  <div className="flex flex-row justify-between items-end py-2 text-[12px]">
-                    <div className="flex flex-row gap-x-2 items-end">
+                  <div className="w-full grid grid-cols-[1fr_60px] items-end py-2 text-[12px]">
+                    <div className="flex flex-row gap-x-2 items-end flex-wrap gap-y-2">
                       <button className="bg-white rounded-full px-3 text-[14px] ">
                         {item.ip}
                       </button>
@@ -161,7 +164,9 @@ export const SearchPage = ({
                         </button>
                       ))}
                     </div>
-                    {item.date.format("YYYY.MM.DD")}
+                    <div className="min-w-[60px]">
+                      {item.date.format("YYYY.MM.DD")}
+                    </div>
                   </div>
                 </div>
               );
@@ -184,7 +189,11 @@ export const Detail = ({ item }: { item: pieceType }) => {
             height={36}
             alt=""
             objectFit="cover"
-            src={"https://image.baidu.com/search/down?url=" + item.userIcon}
+            src={
+              typeof item.userIcon === "string"
+                ? "https://image.baidu.com/search/down?url=" + item.userIcon
+                : item.userIcon
+            }
             className="rounded-full"
           />
           <div className="flex flex-col items-start">
@@ -273,9 +282,7 @@ export const Detail = ({ item }: { item: pieceType }) => {
                 width={24}
                 height={24}
                 alt=""
-                src={
-                  "https://image.baidu.com/search/down?url=" + comment.userIcon
-                }
+                src={comment.userIcon}
                 className="rounded-full"
               />
               <div className="flex flex-col items-start">
