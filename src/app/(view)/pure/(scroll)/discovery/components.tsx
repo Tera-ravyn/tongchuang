@@ -50,9 +50,9 @@ export const SearchPage = ({
     setData([project]);
   });
   return (
-    <div className="z-[100] bg-bblack w-full transition-all duration-300 ease-in-out pb-24">
+    <div className="z-[100] bg-white w-full transition-all duration-300 ease-in-out pb-24">
       {refresh && (
-        <div className=" text-white w-full pt-4 flex justify-center">
+        <div className=" text-black w-full pt-4 flex justify-center">
           <SpinLoading
             color="white"
             style={{ "--size": "64px", margin: "auto" }}
@@ -65,8 +65,8 @@ export const SearchPage = ({
           <Class />
         </div>
         <div className="px-4 w-full  ">
-          <div className="font-title text-[16px] text-white mb-2">最近搜索</div>
-          <div className="w-full text-[15px] flex flex-row  bg-bblack items-center justify-start gap-x-3">
+          <div className="font-title text-[16px] text-black mb-2">最近搜索</div>
+          <div className="w-full text-[15px] flex flex-row  bg-white items-center justify-start gap-x-3">
             {searchHistory.map((item, index) => {
               return (
                 <button
@@ -81,10 +81,10 @@ export const SearchPage = ({
           </div>
         </div>
         <div className="px-4 w-full pt-8 ">
-          <div className="font-title text-[16px] text-white mb-2">
+          <div className="font-title text-[16px] text-black mb-2">
             近期企划宣传
           </div>
-          <div className="w-full text-[15px] flex flex-col  bg-bblack items-center justify-start gap-y-5">
+          <div className="w-full text-[15px] flex flex-col  bg-white items-center justify-start gap-y-5">
             {(data[0] as pieceType[])?.map((item, index) => {
               return (
                 <div
@@ -181,7 +181,7 @@ export const SearchPage = ({
 export const Detail = ({ item }: { item: pieceType }) => {
   const [largeImg, setLargeImg] = useRecoilState(view);
   return (
-    <div className=" py-2 text-white flex flex-col">
+    <div className=" py-2 text-black flex flex-col">
       <div className="px-4 flex flex-row items-center  py-2 justify-between">
         <div className="flex flex-row items-center gap-x-4">
           <Image
@@ -221,14 +221,14 @@ export const Detail = ({ item }: { item: pieceType }) => {
       <div className="px-4 flex flex-col gap-y-4 rounded-b-2xl pb-4 shadow-md ">
         <div className="flex flex-col justify-start items-start py-2 gap-y-2 text-[12px]">
           <div className="flex flex-row gap-x-2 items-end">
-            <button className="outline outline-1 outline-white rounded-full px-3 text-[14px] ">
+            <button className="outline outline-1 outline-black rounded-full px-3 text-[14px] ">
               {item.ip}
             </button>
           </div>
           <div className="flex flex-row gap-x-2 items-end">
             {item.tags.map((_, i) => (
               <button
-                className=" outline outline-1 outline-white  rounded-full px-3"
+                className=" outline outline-1 outline-black  rounded-full px-3"
                 key={`tags${_}${i}`}
               >
                 {_}
@@ -347,15 +347,15 @@ export const Post = () => {
   ]);
   const [select, setSelect] = useState(0);
   return (
-    <div className="flex flex-col items-start px-4 py-2 gap-y-2 text-white">
+    <div className="flex flex-col items-start px-4 py-2 gap-y-2 text-black">
       <SubPost title="可见范围">
         <div className="flex flex-row justify-around w-full">
           <div
             className="flex flex-row items-end gap-x-2"
             onClick={() => setSelect(0)}
           >
-            <div className="w-12 h-12 border-[1px] rounded-full border-white bg-pure"></div>
-            <div className="w-4 h-4 border-[1px] rounded-full border-white bg-white flex items-center">
+            <div className="w-12 h-12 border-[1px] rounded-full border-darkgray bg-pure"></div>
+            <div className="w-4 h-4 border-[1px] rounded-full border-darkgray bg-white flex items-center">
               {select === 0 && (
                 <FaCheck className="text-bblack w-2.5 h-2.5 mx-0.5" />
               )}
@@ -365,8 +365,8 @@ export const Post = () => {
             className="flex flex-row items-end gap-x-2"
             onClick={() => setSelect(1)}
           >
-            <div className="w-12 h-12 border-[1px] rounded-full border-white bg-red-800"></div>
-            <div className="w-4 h-4 border-[1px] rounded-full border-white bg-white flex items-center">
+            <div className="w-12 h-12 border-[1px] rounded-full border-darkgray bg-red-800"></div>
+            <div className="w-4 h-4 border-[1px] rounded-full border-darkgray bg-white flex items-center">
               {select === 1 && (
                 <FaCheck className="text-bblack w-2.5 h-2.5 mx-0.5" />
               )}
@@ -376,8 +376,8 @@ export const Post = () => {
             className="flex flex-row items-end gap-x-2"
             onClick={() => setSelect(2)}
           >
-            <div className="w-12 h-12 border-[1px] rounded-full border-white bg-gradient-to-r from-pure to-red-800"></div>
-            <div className="w-4 h-4 border-[1px] rounded-full border-white bg-white flex items-center">
+            <div className="w-12 h-12 border-[1px] rounded-full border-darkgray bg-gradient-to-r from-pure to-red-800"></div>
+            <div className="w-4 h-4 border-[1px] rounded-full border-darkgray bg-white flex items-center">
               {select === 2 && (
                 <FaCheck className="text-bblack w-2.5 h-2.5 mx-0.5" />
               )}
@@ -390,20 +390,20 @@ export const Post = () => {
       </SubPost>
       <SubPost title="作品所属ip">
         <div className="flex flex-col gap-y-2 items-start">
-          <button className="rounded-md bg-white px-8 py-1">
+          <button className="rounded-md bg-gray px-8 py-1">
             <Clipboard className="w-4 h-4 text-black " />
           </button>
           <div>更多相关tag</div>
           <div className="flex flex-row gap-x-4 text-[12px] text-black">
-            <div className="rounded-full bg-white px-6 font-bold">...</div>
-            <div className="rounded-full bg-white px-6 font-bold ">...</div>
-            <div className="rounded-full bg-white px-6 font-bold ">+</div>
+            <div className="rounded-full bg-gray px-6 font-bold">...</div>
+            <div className="rounded-full bg-gray px-6 font-bold ">...</div>
+            <div className="rounded-full bg-gray px-6 font-bold ">+</div>
           </div>
         </div>
       </SubPost>
 
       <SubPost title="文章标题">
-        <div className="transition-all duration-300 ease-in-out text-[15px] px-4 py-1 flex flex-row items-center w-full justify-between bg-neutral-400 rounded-md">
+        <div className="transition-all duration-300 ease-in-out text-[15px] px-4 py-1 flex flex-row items-center w-full justify-between bg-neutral-300 rounded-md">
           <input className="w-full bg-transparent" />
         </div>
       </SubPost>
@@ -415,7 +415,7 @@ export const Post = () => {
         />
       </SubPost>
       <SubPost title="文章内容">
-        <div className="w-full px-2 py-1 bg-neutral-400 rounded-md">
+        <div className="w-full px-2 py-1 bg-neutral-300 rounded-md">
           <textarea className="bg-transparent w-full min-h-[6rem] resize-none text-[15px]"></textarea>
         </div>
       </SubPost>
@@ -446,26 +446,26 @@ const Class = () => {
   const classes = ["文章", "插画", "漫画", "DIY", "剪辑"];
   return (
     <div
-      className={` w-full  flex flex-row  bg-bblack items-center justify-between`}
+      className={` w-full  flex flex-row  bg-white items-center justify-between`}
     >
       {classes.map((item, index) => {
         return (
           <div key={item}>
             <div
               onClick={() => setActive(index)}
-              className={`cursor-pointer  justify-evenly flex flex-row items-center gap-x-2 font-title text-[16px] text-white`}
+              className={`cursor-pointer  justify-evenly flex flex-row items-center gap-x-2 font-title text-[16px] text-black`}
             >
               <Star
                 className={`w-6 h-6 ${
                   active === index
-                    ? "text-red-800 stroke-1 stroke-white"
-                    : "text-white"
+                    ? "text-red-800 stroke-1 stroke-black"
+                    : "text-black"
                 }`}
               />
               <div
-                className={active === index ? "text-red-800 " : "text-white"}
+                className={active === index ? "text-red-800 " : "text-black"}
                 style={{
-                  WebkitTextStroke: active === index ? "0.5px white" : "",
+                  WebkitTextStroke: active === index ? "0.5px black" : "",
                 }}
               >
                 {item}

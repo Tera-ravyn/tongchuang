@@ -5,7 +5,7 @@ import Bone from "@/assets/icons/bone.svg";
 const func = [
   {
     title: "开通赞赏功能",
-    icon: <PayFunc className="w-16 h-16 stroke-[0.65] text-black" />,
+    icon: <PayFunc className="w-16 h-16 text-black stroke-[0.65]" />,
     context: [
       {
         title: "什么是赞赏功能？",
@@ -65,7 +65,7 @@ const Pay = () => {
                   </div>
                 ))}
               </div>
-              <div className="flex flex-col items-center gap-y-2">
+              <div className="flex flex-col items-center gap-y-2 ">
                 {item.icon}
                 <button className="bg-pure font-title text-[14px] px-2 py-1 rounded-xl">
                   开通功能
